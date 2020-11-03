@@ -1,29 +1,32 @@
-<ion-header [translucent]="true">
+<ion-header>
     <ion-toolbar color="primary">
+        <ion-buttons>
+            <ion-back-button>
+                <ion-icon src='assets/icon/backButton.svg'></ion-icon>
+            </ion-back-button>
+        </ion-buttons>
         <ion-title class="ion-text-center">
             Wisea
         </ion-title>
     </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true" color="background">
+<ion-content>
     <ion-item-group id="container">
-        <ion-img src='assets/homePage/plane.svg' class="planeImg"></ion-img>
-        <ion-item lines='none' class="ion-text-start">
+        <ion-item lines='none'>
             <ion-title color="primary" class="ion-no-margin">
                 <p>Halo,</p>
-                <strong>Mipanzuzu
-                </strong>
+                <strong>Mipanzuzu</strong>
             </ion-title>
         </ion-item>
         <ion-item lines='none'>
             <ion-img src="assets/homePage/home.svg"></ion-img>
         </ion-item>
-        <ion-title size="large" class="ion-text-center title">#NgeBolang yukk!</ion-title>
+        <ion-title size="large" class="ion-text-center title">#Ngebolang yukk!</ion-title>
         <ion-item lines='none'>
             <ion-label color="medium" class="ion-text-wrap">Seperti abang nasi goreng, kami siapkan hiburan spesial sesuai preferensi kamu!</ion-label>
         </ion-item>
-        <ion-button expand="block" shape="round" routerLink="/recommendation1" class="btn">
+        <ion-button expand="block" shape="round" routerLink="/recommendation1">
             Mulai
         </ion-button>
     </ion-item-group>

@@ -1,9 +1,7 @@
 <ion-header>
     <ion-toolbar color="primary">
-        <ion-buttons>
-            <ion-back-button>
-                <ion-icon src='assets/icon/backButton.svg'></ion-icon>
-            </ion-back-button>
+        <ion-buttons slot="start" routerLink="../recommendation1">
+            <ion-icon src='assets/icon/backButton.svg'></ion-icon>
         </ion-buttons>
         <ion-title class="ion-text-center">
             Wisea
@@ -14,20 +12,29 @@
 <ion-content>
     <ion-item-group id="container">
         <ion-item lines='none'>
-            <ion-title color="primary" class="ion-no-margin">
-                <p>Halo,</p>
-                <strong>Mipanzuzu</strong>
-            </ion-title>
+            <ion-img src="assets/Recommendation/recommend2.svg"></ion-img>
         </ion-item>
+        <ion-title size="large" class="ion-text-center title">Ditemani siapa nih? </ion-title>
         <ion-item lines='none'>
-            <ion-img src="assets/homePage/home.svg"></ion-img>
+            <ion-label color="medium" class="ion-text-wrap">Sendiri atau bersama orang terkasih tetap akan menyenangkan kok..</ion-label>
         </ion-item>
-        <ion-title size="large" class="ion-text-center title">#Ngebolang yukk!</ion-title>
-        <ion-item lines='none'>
-            <ion-label color="medium" class="ion-text-wrap">Seperti abang nasi goreng, kami siapkan hiburan spesial sesuai preferensi kamu!</ion-label>
-        </ion-item>
-        <ion-button expand="block" shape="round" routerLink="/recommendation1">
-            Mulai
-        </ion-button>
+        <ion-grid lines="none">
+            <ion-row>
+                <ion-col size="3" size-lg>
+                    <ion-img src="assets/Recommendation/alone.svg" class="budgetImg" (click)="withInput($event, 'alone')"></ion-img>
+                </ion-col>
+                <ion-col size="3" size-lg>
+                    <ion-img src="assets/Recommendation/couple.svg" class="budgetImg" (click)="withInput($event, 'couple')"></ion-img>
+                </ion-col>
+            </ion-row>
+            <ion-row>
+                <ion-col size="3" size-lg>
+                    <ion-img src="assets/Recommendation/friend.svg" class="budgetImg" (click)="withInput($event, 'friend')"></ion-img>
+                </ion-col>
+                <ion-col size="3" size-lg>
+                    <ion-img src="assets/Recommendation/family.svg" class="budgetImg" (click)="withInput($event, 'family')"></ion-img>
+                </ion-col>
+            </ion-row>
+        </ion-grid>
     </ion-item-group>
 </ion-content>

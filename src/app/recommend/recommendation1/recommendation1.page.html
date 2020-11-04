@@ -1,9 +1,7 @@
 <ion-header>
     <ion-toolbar color="primary">
-        <ion-buttons>
-            <ion-back-button>
-                <ion-icon src='assets/icon/backButton.svg'></ion-icon>
-            </ion-back-button>
+        <ion-buttons slot='start' routerLink="/home">
+            <ion-icon src='assets/icon/backButton.svg'></ion-icon>
         </ion-buttons>
         <ion-title class="ion-text-center">
             Wisea
@@ -26,16 +24,7 @@
                     <ion-img src="assets/Recommendation/less100k.svg" class="budgetImg" (click)="budgetInput($event, 'less')"></ion-img>
                 </ion-col>
                 <ion-col size="3" size-lg>
-                    <ion-img src="assets/Recommendation/less100k.svg" class="budgetImg" (click)="budgetInput($event, 'more')"></ion-img>
-                </ion-col>
-            </ion-row>
-            <ion-row>
-                <ion-col size="3" size-lg>
-                    <ion-text>
-                        < 100rb </ion-text>
-                </ion-col>
-                <ion-col size="3" size-lg>
-                    <ion-text> > 100ribu </ion-text>
+                    <ion-img src="assets/Recommendation/more100k.svg" class="budgetImg" (click)="budgetInput($event, 'more')"></ion-img>
                 </ion-col>
             </ion-row>
         </ion-grid>

@@ -2,28 +2,11 @@
     position: absolute;
     left: 0%;
     right: 0%;
-    top: 50%;
+    top: 40%;
+    margin-top: 28px;
+    margin-bottom: 28px;
     transform: translateY(-50%);
     color: var(--ion-color-primary);
-}
-
-#container strong {
-    font-size: 40px;
-    line-height: 28px;
-    margin-top: 20px;
-    letter-spacing: 2px;
-}
-
-#container p {
-    font-size: 26px;
-    line-height: 28px;
-    color: var(--ion-color-primary);
-    margin-bottom: 16px;
-    width: 10px;
-}
-
-#container a {
-    text-decoration: none;
 }
 
 #container ion-item {
@@ -51,16 +34,81 @@ ion-icon {
 }
 
 .map {
-    height: 140px;
-    width: 200%;
+    margin: auto;
+    width: 60%;
+}
+
+.mapOverflow {
     white-space: nowrap;
     overflow-x: auto;
-    overflow-y: hidden;
-    // overflow-x: auto;
-    // width: 200%;
-    // position: absolute;
-    // left: 3.38%;
-    // right: 3.38%;
-    // top: 30.58%;
-    // bottom: 9%;
+}
+
+.mapPath:hover,
+.greenPath:hover,
+.pinkPath:hover,
+.purplePath:hover,
+.bluePath:hover,
+.orangePath:hover,
+.yellowPath:hover,
+.lightGreenPath:hover {
+    opacity: 100%;
+    stroke: black;
+    stroke-width: 1px;
+    cursor: pointer;
+}
+
+.greenPath {
+    fill: #00911d;
+    opacity: 50%;
+    stroke: black;
+    stroke-width: 1px;
+}
+
+.pinkPath {
+    fill: #ff0095;
+    opacity: 50%;
+    stroke: black;
+    stroke-width: 1px;
+}
+
+.bluePath {
+    fill: #5479ff;
+    opacity: 70%;
+    stroke: black;
+    stroke-width: 1px;
+}
+
+.purplePath {
+    fill: #ad06ca;
+    opacity: 50%;
+    stroke: black;
+    stroke-width: 1px;
+}
+
+.yellowPath {
+    fill: #ffee00;
+    opacity: 50%;
+    stroke: black;
+    stroke-width: 1px;
+}
+
+.orangePath {
+    fill: #ff9100;
+    opacity: 50%;
+    stroke: black;
+    stroke-width: 1px;
+}
+
+.lightGreenPath {
+    fill: #5aff51;
+    opacity: 50%;
+    stroke: black;
+    stroke-width: 1px;
+}
+
+.mapPath {
+    fill: #00a721;
+    opacity: 50%;
+    stroke: black;
+    stroke-width: 1px;
 }

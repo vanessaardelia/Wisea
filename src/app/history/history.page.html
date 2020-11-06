@@ -13,7 +13,9 @@
   <ion-item-group class="body__container">
     <ion-card>
       <ion-card-header>
-        <ion-card-subtitle>Card Subtitle</ion-card-subtitle>
+        <ion-card-subtitle *ngFor="let product of employees">
+          <pre>{{ product.nama }}</pre>
+        </ion-card-subtitle>
         <ion-card-title>Card Title</ion-card-title>
       </ion-card-header>
     

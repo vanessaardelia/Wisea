@@ -67,3 +67,9 @@
 .userName {
     padding: 12px;
 }
+
+.header {
+  &__icon{
+    font-size: 24px;
+  }
+}

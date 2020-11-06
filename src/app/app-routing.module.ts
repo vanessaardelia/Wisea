@@ -31,6 +31,11 @@ const routes: Routes = [
     path: 'recommendation-result',
     loadChildren: () => import('./recommend/recommendation-result/recommendation-result.module').then( m => m.RecommendationResultPageModule)
   },
+  {
+    path: 'history',
+    loadChildren: () => import('./history/history.module').then( m => m.HistoryPageModule)
+  },
+
 ];
 
 @NgModule({

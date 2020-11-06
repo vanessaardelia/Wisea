@@ -3,6 +3,14 @@
 
 /** Ionic CSS Variables **/
 
+ion-toolbar {
+    padding: 0 16px;
+}
+
+ion-card {
+    border-radius: 16px;
+}
+
 :root {
     /** primary **/
     --ion-color-primary: #7BA57F;

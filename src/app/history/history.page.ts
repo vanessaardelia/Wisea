@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { HistoryService } from 'src/app/service/history.service';
-import { Observable } from 'rxjs';
-import { AngularFirestoreCollection, AngularFirestore } from 'angularfire2/firestore';
 import History from '../model/history';
 
 @Component({

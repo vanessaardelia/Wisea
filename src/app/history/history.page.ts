@@ -17,6 +17,9 @@ export class HistoryPage implements OnInit {
   }
 
   ngOnInit() {
+  }
+
+  ionViewWillEnter() {
     this.getEmployees();
   }
 

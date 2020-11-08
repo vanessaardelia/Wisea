@@ -1,3 +1,3 @@
 export default class History {
-    nama: string
-  }
+  nama: string
+}

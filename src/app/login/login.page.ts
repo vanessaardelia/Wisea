@@ -37,7 +37,7 @@ export class LoginPage implements OnInit {
     }, async err => {
       loading.dismiss();
       const alert = await this.alertController.create({
-        header: 'Registrasi akun gagal',
+        header: 'Login akun gagal',
         message: err.message,
         buttons: ['OK'],
       });

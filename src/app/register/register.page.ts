@@ -3,6 +3,7 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {Router} from '@angular/router';
 import {AuthService} from '../service/auth.service';
 import {AlertController, LoadingController} from '@ionic/angular';
+import {ConfirmPasswordValidator} from './confirm-password.validator';
 
 @Component({
   selector: 'app-register',
@@ -26,8 +27,10 @@ export class RegisterPage implements OnInit {
       username: ['', [Validators.required]],
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(6)]],
+      confirm: ['', [Validators.required, Validators.minLength(6)]],
       phone: ['', [Validators.required, Validators.minLength(10), Validators.maxLength(12)]],
-      photo: ['default']
+    }, {
+      validator: ConfirmPasswordValidator('password', 'confirm'),
     });
   }
 
@@ -66,6 +69,10 @@ export class RegisterPage implements OnInit {
 
   get password() {
     return this.credentialForm.get('password');
+  }
+
+  get confirm() {
+    return this.credentialForm.get('confirm');
   }
 
   get phone() {

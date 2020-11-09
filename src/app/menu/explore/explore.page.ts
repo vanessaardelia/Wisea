@@ -1,9 +1,9 @@
 import {Component, OnInit} from '@angular/core';
-import {WisataService} from '../service/wisata.service';
+import {WisataService} from '../../service/wisata.service';
 import {Observable} from 'rxjs';
 import {AngularFireStorage} from '@angular/fire/storage';
 import {map} from 'rxjs/operators';
-import {Wisata} from '../model/wisata.interface';
+import {Wisata} from '../../model/wisata.interface';
 
 @Component({
   selector: 'app-explore',

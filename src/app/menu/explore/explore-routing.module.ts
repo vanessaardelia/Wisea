@@ -10,7 +10,7 @@ const routes: Routes = [
   },
   {
     path: 'explore-detail/:id',
-    loadChildren: () => import('./explore-detail/explore-detail.module').then( m => m.ExploreDetailPageModule)
+    loadChildren: () => import('./explore-detail/explore-detail.module').then(m => m.ExploreDetailPageModule)
   }
 ];
 

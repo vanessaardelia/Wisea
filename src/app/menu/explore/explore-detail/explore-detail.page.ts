@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { WisataDetail } from '../../model/wisata-detail.interface';
-import { WisataService } from '../../service/wisata.service';
+import { WisataDetail } from '../../../model/wisata-detail.interface';
+import { WisataService } from '../../../service/wisata.service';
 import { ActivatedRoute } from '@angular/router';
 import {Observable} from 'rxjs';
 

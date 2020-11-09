@@ -8,13 +8,26 @@ import { StatusBar } from '@ionic-native/status-bar/ngx';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
-import { NativeStorage } from '@ionic-native/native-storage/ngx';
+
+// using Ionic Storage (Local Storage)
 import { IonicStorageModule } from '@ionic/storage';
+
+// using firebase store
+import { AngularFireModule } from 'angularfire2';
+import { AngularFirestoreModule } from 'angularfire2/firestore';
+import { firebaseConfig } from './credentials';
 
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
-  imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule, IonicStorageModule.forRoot()],
+  imports: [
+    BrowserModule,
+    IonicModule.forRoot(),
+    AppRoutingModule,
+    IonicStorageModule.forRoot(),
+    AngularFireModule.initializeApp(firebaseConfig),
+    AngularFirestoreModule
+  ],
   providers: [
     StatusBar,
     SplashScreen,

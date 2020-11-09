@@ -7,7 +7,11 @@ const routes: Routes = [
   {
     path: '',
     component: ResetPasswordPage
+  },  {
+    path: 'email-confirmation',
+    loadChildren: () => import('./email-confirmation/email-confirmation.module').then( m => m.EmailConfirmationPageModule)
   }
+
 ];
 
 @NgModule({

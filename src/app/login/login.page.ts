@@ -41,6 +41,8 @@ export class LoginPage implements OnInit {
         message: err.message,
         buttons: ['OK'],
       });
+
+      await alert.present();
     });
   }
 

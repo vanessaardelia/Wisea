@@ -74,12 +74,11 @@
               clearInput="true">
       </ion-input>
     </ion-item>
+    <div *ngIf="(credentialForm.get('phone').dirty || credentialForm.get('phone').touched) && credentialForm.get('phone').errors" class="errors">
+      <span *ngIf="credentialForm.get('phone').errors.required">Phone number is required</span>
+      <span *ngIf="credentialForm.get('phone').errors.minlength || credentialForm.get('phone').errors.maxlength">Phone needs to be between 10 - 12 characters</span>
+    </div>
   </form>
 
-  <div *ngIf="(credentialForm.get('phone').dirty || credentialForm.get('phone').touched) && credentialForm.get('phone').errors" class="errors">
-    <span *ngIf="credentialForm.get('phone').errors.required">Phone number is required</span>
-    <span *ngIf="credentialForm.get('phone').errors.minlength || credentialForm.get('phone').errors.maxlength">Phone needs to be between 10 - 12 characters</span>
-  </div>
-  <!--  <ion-button (click)="register()" expand="full">Register</ion-button>-->
   <ion-button (click)="register()" expand="full" color="secondary" [disabled]="!credentialForm.valid">Register</ion-button>
 </ion-content>

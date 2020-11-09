@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import {AngularFireAuth} from '@angular/fire/auth';
 import {AngularFirestore} from '@angular/fire/firestore';
+import firebase from "firebase";
 
 export interface User {
   uid: string;
@@ -23,8 +24,6 @@ export class AuthService {
   async register(userData) {
     const credential = await this.userAuth.createUserWithEmailAndPassword(userData.email, userData.password);
 
-    console.log('result: ', credential);
-
     return this.userStore.doc(`users/${credential.user.uid}`).set({
       uid: credential.user.uid,
       email: userData.email,
@@ -45,9 +44,13 @@ export class AuthService {
   }
 
   resetPassword() {
-
+    return this.userAuth.sendPasswordResetEmail(this.currentUser.email);
   }
-  
+
+  async confirmResetPassword(code, password) {
+    return await this.userAuth.confirmPasswordReset(code, password);
+  }
+
   getUserData() {
     return this.userStore.collection('users').doc(this.currentUser.uid).valueChanges();
   }

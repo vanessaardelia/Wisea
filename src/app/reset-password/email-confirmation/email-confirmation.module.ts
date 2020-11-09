@@ -4,18 +4,18 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
-import { ResetPasswordPageRoutingModule } from './reset-password-routing.module';
+import { EmailConfirmationPageRoutingModule } from './email-confirmation-routing.module';
 
-import { ResetPasswordPage } from './reset-password.page';
+import { EmailConfirmationPage } from './email-confirmation.page';
 
 @NgModule({
     imports: [
         CommonModule,
         FormsModule,
         IonicModule,
-        ResetPasswordPageRoutingModule,
+        EmailConfirmationPageRoutingModule,
         ReactiveFormsModule
     ],
-  declarations: [ResetPasswordPage]
+  declarations: [EmailConfirmationPage]
 })
-export class ResetPasswordPageModule {}
+export class EmailConfirmationPageModule {}

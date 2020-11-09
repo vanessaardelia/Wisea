@@ -37,10 +37,6 @@ export class RegisterPage implements OnInit {
   async register() {
     const loading = await this.loadingController.create();
     await loading.present();
-    console.log(this.credentialForm);
-    console.log('==================');
-    console.log(this.credentialForm.value);
-
 
     this.authService.register(this.credentialForm.value).then(user => {
       loading.dismiss();
@@ -52,6 +48,8 @@ export class RegisterPage implements OnInit {
         message: err.message,
         buttons: ['OK'],
       });
+
+      await alert.present();
     });
   }
 }

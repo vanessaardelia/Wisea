@@ -43,8 +43,8 @@ export class AuthService {
     return this.userAuth.signOut();
   }
 
-  resetPassword() {
-    return this.userAuth.sendPasswordResetEmail(this.currentUser.email);
+  resetPassword(email) {
+    return this.userAuth.sendPasswordResetEmail(email);
   }
 
   async confirmResetPassword(code, password) {
@@ -53,5 +53,9 @@ export class AuthService {
 
   getUserData() {
     return this.userStore.collection('users').doc(this.currentUser.uid).valueChanges();
+  }
+
+  checkAvailablePhone(phone) {
+    return this.userStore.collection('users', ref => ref.where('phone', '==', phone)).valueChanges();
   }
 }

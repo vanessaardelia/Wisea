@@ -45,12 +45,4 @@ export class LoginPage implements OnInit {
       await alert.present();
     });
   }
-
-  get email() {
-    return this.credentialForm.get('email');
-  }
-
-  get password() {
-    return this.credentialForm.get('password');
-  }
 }

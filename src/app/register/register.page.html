@@ -80,5 +80,6 @@
     </div>
   </form>
 
-  <ion-button (click)="register()" expand="full" color="secondary" [disabled]="!credentialForm.valid">Register</ion-button>
+  <ion-button (click)="register()" expand="full" color="primary" shape="round" [disabled]="!credentialForm.valid">Daftar</ion-button>
+  <ion-button routerLink="/login" expand="full" color="tertiary" shape="round">Kembali</ion-button>
 </ion-content>

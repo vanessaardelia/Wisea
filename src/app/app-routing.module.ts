@@ -56,7 +56,11 @@ const routes: Routes = [
   {
     path: 'explore',
     loadChildren: () => import('./menu/explore/explore.module').then(m => m.ExplorePageModule)
+  },  {
+    path: 'splash-screen',
+    loadChildren: () => import('./splash-screen/splash-screen.module').then( m => m.SplashScreenPageModule)
   },
+
 
 
 ];

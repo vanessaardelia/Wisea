@@ -32,22 +32,24 @@ export class ResetPasswordPage implements OnInit {
 
     const phone = this.resetPasswordForm.value.phone;
 
-    this.authService.getUserData().subscribe((res) => {
-      const userPhone = res.phone;
+    this.authService.checkAvailablePhone(phone).subscribe((res) => {
+        console.log('Inputted phone number\'s data: ', res[0]);
+        const userPhone = res[0].phone;
+        const userEmail = res[0].email;
 
-      if (userPhone === phone) {
-          this.authService.resetPassword().then(() => {
+        if (userPhone === phone) {
+              this.authService.resetPassword().then(() => {
+                  loading.dismiss();
+               this.presentAlert('Reset password sukses!', 'Silahkan mengkonfirmasi pesan yang telah dikirimkan melalui email anda');
+               this.router.navigateByUrl('/login', { replaceUrl: true });
+            }, async err => {
+               loading.dismiss();
+                  this.presentAlert('Reset password gagal', err.message);
+            });
+        } else {
               loading.dismiss();
-              this.presentAlert('Reset password sukses!', 'Silahkan mengkonfirmasi pesan yang telah dikirimkan melalui email anda');
-              this.router.navigateByUrl('/login', { replaceUrl: true });
-          }, async err => {
-              loading.dismiss();
-              this.presentAlert('Reset password gagal', err.message);
-          });
-      } else {
-          loading.dismiss();
-          this.presentAlert('Reset password gagal', 'Nomor yang dimasukkan tidak terdaftar');
-      }
+            this.presentAlert('Reset password gagal', 'Nomor yang dimasukkan tidak terdaftar');
+        }
     });
   }
 

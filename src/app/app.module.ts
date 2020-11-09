@@ -13,14 +13,11 @@ import { AppRoutingModule } from './app-routing.module';
 import { IonicStorageModule } from '@ionic/storage';
 
 // using firebase store
-// import { AngularFireModule } from 'angularfire2';
-// import { AngularFirestoreModule } from 'angularfire2/firestore';
-// import { firebaseConfig } from './credentials';
-
 import { AngularFireModule } from '@angular/fire';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
-import { firebaseConfig } from './credentials';
 import {AngularFireAuthModule} from '@angular/fire/auth';
+import {AngularFireStorageModule} from '@angular/fire/storage';
+import { firebaseConfig } from './credentials';
 
 @NgModule({
   declarations: [AppComponent],
@@ -33,6 +30,7 @@ import {AngularFireAuthModule} from '@angular/fire/auth';
     AngularFireModule.initializeApp(firebaseConfig),
     AngularFirestoreModule,
     AngularFireAuthModule,
+    AngularFireStorageModule
   ],
   providers: [
     StatusBar,

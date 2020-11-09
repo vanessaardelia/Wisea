@@ -54,28 +54,4 @@ export class RegisterPage implements OnInit {
       });
     });
   }
-
-  get name() {
-    return this.credentialForm.get('name');
-  }
-
-  get username() {
-    return this.credentialForm.get('username');
-  }
-
-  get email() {
-    return this.credentialForm.get('email');
-  }
-
-  get password() {
-    return this.credentialForm.get('password');
-  }
-
-  get confirm() {
-    return this.credentialForm.get('confirm');
-  }
-
-  get phone() {
-    return this.credentialForm.get('phone');
-  }
 }

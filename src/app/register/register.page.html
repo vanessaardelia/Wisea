@@ -14,7 +14,7 @@
               clearInput="true">
       </ion-input>
     </ion-item>
-    <div *ngIf="(name.dirty || name.touched) && name.errors" class="errors">
+    <div *ngIf="(credentialForm.get('name').dirty || credentialForm.get('name').touched) && credentialForm.get('name').errors" class="errors">
       <span *ngIf="credentialForm.get('name').errors.required">Full name is required</span>
     </div>
 
@@ -25,7 +25,7 @@
               clearInput="true">
       </ion-input>
     </ion-item>
-    <div *ngIf="(username.dirty || username.touched) && username.errors" class="errors">
+    <div *ngIf="(credentialForm.get('username').dirty || credentialForm.get('username').touched) && credentialForm.get('username').errors" class="errors">
       <span *ngIf="credentialForm.get('username').errors.required">Username is required</span>
     </div>
 
@@ -36,7 +36,7 @@
               clearInput="true">
       </ion-input>
     </ion-item>
-    <div *ngIf="(email.dirty || email.touched) && email.errors" class="errors">
+    <div *ngIf="(credentialForm.get('email').dirty || credentialForm.get('email').touched) && credentialForm.get('email').errors" class="errors">
       <span *ngIf="credentialForm.get('email').errors.required">Email is required</span>
       <span *ngIf="credentialForm.get('email').errors.email">Email is invalid</span>
     </div>
@@ -49,7 +49,7 @@
               clearInput="true">
       </ion-input>
     </ion-item>
-    <div *ngIf="(password.dirty || password.touched) && password.errors" class="errors">
+    <div *ngIf="(credentialForm.get('password').dirty || credentialForm.get('password').touched) && credentialForm.get('password').errors" class="errors">
       <span *ngIf="credentialForm.get('password').errors.required">Password is required</span>
       <span *ngIf="credentialForm.get('password').errors.minlength">Password needs to be 6 characters</span>
     </div>
@@ -62,7 +62,7 @@
               clearInput="true">
       </ion-input>
     </ion-item>
-    <div *ngIf="(confirm.dirty || confirm.touched) && confirm.errors" class="errors">
+    <div *ngIf="(credentialForm.get('confirm').dirty || credentialForm.get('confirm').touched) && credentialForm.get('confirm').errors" class="errors">
       <span *ngIf="credentialForm.get('confirm').errors.required">Confirm Password is required</span>
       <span *ngIf="credentialForm.get('confirm').errors.mustMatch">Password and Confirm Password didn't match</span>
     </div>
@@ -76,10 +76,10 @@
     </ion-item>
   </form>
 
-  <div *ngIf="(phone.dirty || phone.touched) && phone.errors" class="errors">
+  <div *ngIf="(credentialForm.get('phone').dirty || credentialForm.get('phone').touched) && credentialForm.get('phone').errors" class="errors">
     <span *ngIf="credentialForm.get('phone').errors.required">Phone number is required</span>
     <span *ngIf="credentialForm.get('phone').errors.minlength || credentialForm.get('phone').errors.maxlength">Phone needs to be between 10 - 12 characters</span>
   </div>
   <!--  <ion-button (click)="register()" expand="full">Register</ion-button>-->
-  <ion-button (click)="register()" expand="full" color="secondary" *ngIf="">Register</ion-button>
+  <ion-button (click)="register()" expand="full" color="secondary" [disabled]="!credentialForm.valid">Register</ion-button>
 </ion-content>

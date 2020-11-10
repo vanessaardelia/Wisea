@@ -33,7 +33,7 @@ export class LoginPage implements OnInit {
 
     this.authService.login(this.credentialForm.value).then(user => {
       loading.dismiss();
-      this.router.navigateByUrl('/home', { replaceUrl: true });
+      this.router.navigateByUrl('/menu/tabs/home', { replaceUrl: true });
     }, async err => {
       loading.dismiss();
       const alert = await this.alertController.create({

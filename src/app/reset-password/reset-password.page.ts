@@ -32,13 +32,13 @@ export class ResetPasswordPage implements OnInit {
 
     const phone = this.resetPasswordForm.value.phone;
 
-    this.authService.checkAvailablePhone(phone).subscribe((res) => {
+    this.authService.checkAvailablePhone(phone).subscribe((res: object) => {
         console.log('Inputted phone number\'s data: ', res[0]);
         const userPhone = res[0].phone;
         const userEmail = res[0].email;
 
         if (userPhone === phone) {
-              this.authService.resetPassword().then(() => {
+              this.authService.resetPassword(userEmail).then(() => {
                   loading.dismiss();
                this.presentAlert('Reset password sukses!', 'Silahkan mengkonfirmasi pesan yang telah dikirimkan melalui email anda');
                this.router.navigateByUrl('/login', { replaceUrl: true });

@@ -1,7 +1,8 @@
 {
   "name": "Wisea",
   "integrations": {
-    "capacitor": {}
+    "capacitor": {},
+    "cordova": {}
   },
   "type": "angular"
 }

@@ -1,0 +1,37 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>Email Confirmation</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <form [formGroup]="confirmPasswordForm">
+    <ion-item>
+      <ion-input
+              placeholder="Password"
+              type="password"
+              formControlName="password"
+              clearInput="true">
+      </ion-input>
+    </ion-item>
+    <div *ngIf="(confirmPasswordForm.get('password').dirty || confirmPasswordForm.get('password').touched) && confirmPasswordForm.get('password').errors" class="errors">
+      <span *ngIf="confirmPasswordForm.get('password').errors.required">Password is required</span>
+      <span *ngIf="confirmPasswordForm.get('password').errors.minlength">Password needs to be 6 characters</span>
+    </div>
+
+    <ion-item>
+      <ion-input
+              placeholder="Confirm Password"
+              type="password"
+              formControlName="confirm"
+              clearInput="true">
+      </ion-input>
+    </ion-item>
+    <div *ngIf="(confirmPasswordForm.get('confirm').dirty || confirmPasswordForm.get('confirm').touched) && confirmPasswordForm.get('confirm').errors" class="errors">
+      <span *ngIf="confirmPasswordForm.get('confirm').errors.required">Confirm Password is required</span>
+      <span *ngIf="confirmPasswordForm.get('confirm').errors.mustMatch">Password and Confirm Password didn't match</span>
+    </div>
+  </form>
+  <!--  <ion-button (click)="register()" expand="full">Register</ion-button>-->
+  <ion-button (click)="confirm()" expand="full" color="primary" [disabled]="!confirmPasswordForm.valid" shape="round">Reset</ion-button>
+</ion-content>

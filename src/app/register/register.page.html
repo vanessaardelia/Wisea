@@ -1,0 +1,85 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>register</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <form [formGroup]="credentialForm">
+    <ion-item>
+      <ion-input
+              placeholder="Full name"
+              formControlName="name"
+              autofocus="true"
+              clearInput="true">
+      </ion-input>
+    </ion-item>
+    <div *ngIf="(credentialForm.get('name').dirty || credentialForm.get('name').touched) && credentialForm.get('name').errors" class="errors">
+      <span *ngIf="credentialForm.get('name').errors.required">Full name is required</span>
+    </div>
+
+    <ion-item>
+      <ion-input
+              placeholder="Username"
+              formControlName="username"
+              clearInput="true">
+      </ion-input>
+    </ion-item>
+    <div *ngIf="(credentialForm.get('username').dirty || credentialForm.get('username').touched) && credentialForm.get('username').errors" class="errors">
+      <span *ngIf="credentialForm.get('username').errors.required">Username is required</span>
+    </div>
+
+    <ion-item>
+      <ion-input
+              placeholder="Email address"
+              formControlName="email"
+              clearInput="true">
+      </ion-input>
+    </ion-item>
+    <div *ngIf="(credentialForm.get('email').dirty || credentialForm.get('email').touched) && credentialForm.get('email').errors" class="errors">
+      <span *ngIf="credentialForm.get('email').errors.required">Email is required</span>
+      <span *ngIf="credentialForm.get('email').errors.email">Email is invalid</span>
+    </div>
+
+    <ion-item>
+      <ion-input
+              placeholder="Password"
+              type="password"
+              formControlName="password"
+              clearInput="true">
+      </ion-input>
+    </ion-item>
+    <div *ngIf="(credentialForm.get('password').dirty || credentialForm.get('password').touched) && credentialForm.get('password').errors" class="errors">
+      <span *ngIf="credentialForm.get('password').errors.required">Password is required</span>
+      <span *ngIf="credentialForm.get('password').errors.minlength">Password needs to be 6 characters</span>
+    </div>
+
+    <ion-item>
+      <ion-input
+              placeholder="Confirm Password"
+              type="password"
+              formControlName="confirm"
+              clearInput="true">
+      </ion-input>
+    </ion-item>
+    <div *ngIf="(credentialForm.get('confirm').dirty || credentialForm.get('confirm').touched) && credentialForm.get('confirm').errors" class="errors">
+      <span *ngIf="credentialForm.get('confirm').errors.required">Confirm Password is required</span>
+      <span *ngIf="credentialForm.get('confirm').errors.mustMatch">Password and Confirm Password didn't match</span>
+    </div>
+
+    <ion-item>
+      <ion-input
+              placeholder="Phone Number"
+              formControlName="phone"
+              clearInput="true">
+      </ion-input>
+    </ion-item>
+    <div *ngIf="(credentialForm.get('phone').dirty || credentialForm.get('phone').touched) && credentialForm.get('phone').errors" class="errors">
+      <span *ngIf="credentialForm.get('phone').errors.required">Phone number is required</span>
+      <span *ngIf="credentialForm.get('phone').errors.minlength || credentialForm.get('phone').errors.maxlength">Phone needs to be between 10 - 12 characters</span>
+    </div>
+  </form>
+
+  <ion-button (click)="register()" expand="full" color="primary" shape="round" [disabled]="!credentialForm.valid">Daftar</ion-button>
+  <ion-button routerLink="/login" expand="full" color="tertiary" shape="round">Kembali</ion-button>
+</ion-content>

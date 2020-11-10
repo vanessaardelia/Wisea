@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { Storage } from '@ionic/storage';
 
 @Component({
   selector: 'app-recommendation2',
@@ -8,13 +9,18 @@ import { Router } from '@angular/router';
 })
 export class Recommendation2Page implements OnInit {
 
-  constructor(private router: Router) { }
+  constructor(private router: Router, private storage: Storage) { }
 
   ngOnInit() {
+    this.storage.get('budget').then((val) => {
+      if(!val)
+        this.router.navigate(['/recommendation1']);
+    });
   }
 
-  withInput(event, withInput){
-    console.log(withInput);
+  withInput(event, goWith){
+    console.log(goWith);
+    this.storage.set('goWith', goWith);
     this.router.navigate(['/recommendation3']);
   }
 }

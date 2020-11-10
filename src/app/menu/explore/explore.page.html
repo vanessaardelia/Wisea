@@ -1,0 +1,20 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>explore</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    <ion-item *ngFor="let wisata of (wisataList | async)" [routerLink]="['./explore-detail', wisata.id]">
+      <ion-thumbnail slot="start">
+        <ion-img [src]="(wisata.gambarUrl | async)"></ion-img>
+      </ion-thumbnail>
+      <ion-label>
+        <p>{{ wisata.id }}</p>
+        <p>{{ wisata.harga }}</p>
+        <p>{{ wisata.nama }}</p>
+      </ion-label>
+    </ion-item>
+  </ion-list>
+</ion-content>

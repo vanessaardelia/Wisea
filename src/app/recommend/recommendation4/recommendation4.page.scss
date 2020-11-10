@@ -1,4 +1,5 @@
 #container {
+    // display: flex;
     position: absolute;
     left: 0%;
     right: 0%;
@@ -33,9 +34,14 @@ ion-icon {
     text-align: left;
 }
 
+.mapOverflow {
+    display: flex;
+}
+
 .map {
     margin: auto;
-    width: 60%;
+    width: 100%;
+    overflow: auto;
 }
 
 .mapOverflow {

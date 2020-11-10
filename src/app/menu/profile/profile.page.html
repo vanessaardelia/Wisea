@@ -1,0 +1,42 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title class="ion-text-center">
+      Wisea
+    </ion-title>
+    <ion-buttons slot="start">
+      <ion-menu-button menu="main-menu"></ion-menu-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" color="background">
+  <ion-item-group id="container">
+    <ion-item lines='none'>
+      <ion-avatar class="proflePic">
+        <ion-img src="assets/profile/account.svg"></ion-img>
+      </ion-avatar>
+    </ion-item>
+    <ion-title size="large" class="ion-text-center userName">Thomas Imanuel</ion-title>
+    <ion-label class="ion-padding-top">thomasimanuel@gmail.com</ion-label>
+    <ion-label class="ion-padding-top">
+      <ion-icon name="phone-portrait-sharp"></ion-icon>08123455434
+    </ion-label>
+    <ion-item lines='none'>
+      <ion-card>
+        <ion-grid>
+          <ion-row class="ion-align-items-center">
+            <ion-col size="8">
+              <p>Saldo kamu</p>
+              <p>Rp 450.000,00</p>
+            </ion-col>
+            <div class="verticalLine"></div>
+            <ion-col size="4">
+              <p>Topup</p>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-card>
+    </ion-item>
+    <ion-button expand="block" shape="round" color="primary" routerLink="/menu/tabs/profile/edit-profile">Edit Profile</ion-button>
+  </ion-item-group>
+</ion-content>

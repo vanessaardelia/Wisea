@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { HistoryService } from 'src/app/service/history.service';
 import History from '../model/history';
 import { Observable } from 'rxjs';
-import {map} from 'rxjs/operators';
 
 @Component({
   selector: 'app-history',
@@ -20,15 +19,11 @@ export class HistoryPage implements OnInit {
   }
 
   constructor(
-      private historyService: HistoryService
+      private historyService: HistoryService,
   ) { }
 
   getHistory() {
-    this.histories = this.historyService.getHistory().pipe(
-        map(histories => histories.map(histories => {
-          return histories;
-        }))
-    );
+    this.histories = this.historyService.getHistory();
   }
 
 }

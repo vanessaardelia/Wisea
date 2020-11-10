@@ -1,3 +1,8 @@
 export default class History {
-  nama: string
+  nama: string;
+  jumlah: number;
+  status: string;
+  tanggal: Date;
+  tiket: string;
+  total: number;
 }

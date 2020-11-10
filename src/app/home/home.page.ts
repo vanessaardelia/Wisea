@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { AngularFirestore, AngularFirestoreCollection } from 'angularfire2/firestore';
+import {AngularFirestore} from '@angular/fire/firestore';
 
 @Component({
   selector: 'app-home',
@@ -7,7 +7,7 @@ import { AngularFirestore, AngularFirestoreCollection } from 'angularfire2/fires
   styleUrls: ['home.page.scss'],
 })
 export class HomePage {
-  cartCollection: AngularFirestoreCollection<any>; //Firestore collection
+  // cartCollection: AngularFirestore<History>; //Firestore collection
   historyCount: string = ''
   constructor(private firestore:AngularFirestore) {}
 

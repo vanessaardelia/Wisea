@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { HistoryService } from 'src/app/service/history.service';
 import History from '../model/history';
+import { Observable } from 'rxjs';
+import {map} from 'rxjs/operators';
 
 @Component({
   selector: 'app-history',
@@ -8,32 +10,25 @@ import History from '../model/history';
   styleUrls: ['./history.page.scss'],
 })
 export class HistoryPage implements OnInit {
-  // emplyee object - type: Employee
-  employee: History = new History();
-
-  // array of emplyee - type: Employee
-  employees: History[];
-  constructor(private historyService: HistoryService) {
-  }
+  public histories: Observable<History[]>;
 
   ngOnInit() {
   }
 
   ionViewWillEnter() {
-    this.getEmployees();
+    this.getHistory();
   }
 
-  getEmployees() {
-    // we call getEmployees() from EmployeeService to get list of employees
-    this.historyService.getAll().subscribe(data => {
-      // this.employees stores list of employee
-      this.employees = data.map(e => {
-        return {
-          nama: e.payload.doc['nama'],
-          ...e.payload.doc.data()
-        } as History;
-      });
-    });
+  constructor(
+      private historyService: HistoryService
+  ) { }
+
+  getHistory() {
+    this.histories = this.historyService.getHistory().pipe(
+        map(histories => histories.map(histories => {
+          return histories;
+        }))
+    );
   }
 
 }

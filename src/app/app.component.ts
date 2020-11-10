@@ -4,6 +4,7 @@ import { Platform } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 import {Router} from '@angular/router';
+import {AuthService} from "./service/auth.service";
 
 @Component({
   selector: 'app-root',
@@ -15,7 +16,8 @@ export class AppComponent {
     private platform: Platform,
     private splashScreen: SplashScreen,
     private statusBar: StatusBar,
-    private router: Router
+    private router: Router,
+    private userAuth: AuthService,
   ) {
     this.initializeApp();
   }
@@ -32,5 +34,10 @@ export class AppComponent {
     setTimeout(() => {
       document.querySelector('ion-menu').shadowRoot.querySelector('.menu-inner').setAttribute('style', 'border-radius:0px 30px 30px 0px');
     }, 200);
+  }
+
+  async logout() {
+    await this.userAuth.logout();
+    return this.router.navigateByUrl('/', { replaceUrl: true });
   }
 }

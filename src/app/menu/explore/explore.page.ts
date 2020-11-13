@@ -11,7 +11,9 @@ import {Wisata} from '../../model/wisata.interface';
   styleUrls: ['./explore.page.scss'],
 })
 export class ExplorePage implements OnInit {
-  public wisataList: Observable<Wisata[]>;
+  public pertunjukanList: Observable<Wisata[]>;
+  public museumList: Observable<Wisata[]>;
+  public workshopList: Observable<Wisata[]>;
 
   constructor(
       private wisataService: WisataService,
@@ -19,7 +21,19 @@ export class ExplorePage implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.wisataList = this.wisataService.getWisata().pipe(
+    this.pertunjukanList = this.wisataService.getWisata('pertunjukan').pipe(
+        map(wisataList => wisataList.map(wisata => {
+          wisata.gambarUrl = this.getImageUrl(wisata.gambar[0]);
+          return wisata;
+        }))
+    );
+    this.museumList = this.wisataService.getWisata('museum').pipe(
+        map(wisataList => wisataList.map(wisata => {
+          wisata.gambarUrl = this.getImageUrl(wisata.gambar[0]);
+          return wisata;
+        }))
+    );
+    this.workshopList = this.wisataService.getWisata('workshop').pipe(
         map(wisataList => wisataList.map(wisata => {
           wisata.gambarUrl = this.getImageUrl(wisata.gambar[0]);
           return wisata;

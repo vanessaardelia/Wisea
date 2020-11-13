@@ -13,8 +13,13 @@ export class WisataService {
       private firestore: AngularFirestore
   ) { }
 
-  getWisata(): Observable<Wisata[]> {
-    return this.firestore.collection<Wisata>('wisata').valueChanges();
+  getWisata(category = null): Observable<Wisata[]> {
+    return this.firestore.collection<Wisata>('wisata', ref => {
+      if (category) {
+        return ref.where('kategori', '==', category);
+      }
+      return ref;
+    }).valueChanges();
   }
 
   getWisataDetail(wisataId): Observable<WisataDetail> {

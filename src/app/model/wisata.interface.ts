@@ -5,7 +5,7 @@ export interface Wisata {
     kota: string;
     id: string;
     gambar: string;
-    gambarUrl: Observable<string | null>;
+    gambarUrl: Observable<string>;
     harga: number;
     nama: string;
 }

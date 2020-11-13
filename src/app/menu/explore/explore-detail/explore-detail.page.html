@@ -1,20 +1,20 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-title>explore-detail</ion-title>
+  <ion-toolbar color="primary">
+    <ion-title>Wisea</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
-  <p>{{ (wisata | async)?.id }}</p>
-  <p>{{ (wisata | async)?.deskripsi }}</p>
-  <p>{{ (wisata | async)?.gambar }}</p>
-  <p>{{ (wisata | async)?.harga }}</p>
-  <p>{{ (wisata | async)?.jam }}</p>
-  <p>{{ (wisata | async)?.kategori }}</p>
-  <p>{{ (wisata | async)?.kota }}</p>
-  <p>{{ (wisata | async)?.lokasi }}</p>
-  <p>{{ (wisata | async)?.nama }}</p>
-  <p>{{ (wisata | async)?.tanggal }}</p>
-  <p>{{ (wisata | async)?.tiketTerjual }}</p>
-  <p>{{ (wisata | async)?.tiketTersedia }}</p>
+<!--scrollY = false untuk mencegah scrolling-->
+<ion-content scrollY="false">
+  <!--  ngClass untuk apply class dengan kondisi tertentu -->
+  <div class="backdrop" [ngClass]="backdropVisibile ? 'fade-in' : 'fade'" tappable (click)="drawer.toggleDrawer()"></div>
+
+  <ion-slides *ngIf="(wisataDetail | async)">
+    <ion-slide *ngFor="let index of [0, 1]">
+      <ion-img [src]="(imageDetail[index] | async)" style="height: calc(55vh + env(safe-area-inset-top)); object-fit: cover"></ion-img>
+    </ion-slide>
+  </ion-slides>
+
+  <!--  $event berisi true atau false, penanda drawer  dinaikkan atau tidak -->
+  <app-drawer [wisataDetail]="wisataDetail" (openStateChanged)="toggleBackdrop($event)" #drawer></app-drawer>
 </ion-content>

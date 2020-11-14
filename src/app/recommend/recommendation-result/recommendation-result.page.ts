@@ -8,6 +8,7 @@ import { WisataService } from 'src/app/service/wisata.service';
 import { map } from 'rxjs/operators';
 import { Wisata } from 'src/app/model/wisata.interface';
 import { getLocaleDateFormat } from '@angular/common';
+import { ToastController } from '@ionic/angular';
 
 @Component({
   selector: 'app-recommendation-result',
@@ -20,7 +21,7 @@ export class RecommendationResultPage implements OnInit {
   public category: string;
   public location: string;
   p1; p2; p3; p4;
-  public recommendResult: Wisata[] =[];
+  public recommendResult: Wisata[];
   public array: any;
   
   public wisataList: Observable<Wisata[]>;
@@ -29,7 +30,7 @@ export class RecommendationResultPage implements OnInit {
   constructor(
     private router: Router, 
     private storage: Storage, 
-    private firestore: AngularFirestore, 
+    private toastController: ToastController,
     private wisataService: WisataService,
     private fireStorage: AngularFireStorage
   ) {}
@@ -38,6 +39,7 @@ export class RecommendationResultPage implements OnInit {
   }
 
   ionViewWillEnter(){
+    this.recommendResult = [];
     this.getLocalData();
 
     this.p1 = this.storage.get('budget');
@@ -47,37 +49,37 @@ export class RecommendationResultPage implements OnInit {
 
     this.array = Promise.all([this.p1,this.p2, this.p3, this.p4]).then(arr => {
       // checking 
-      if(arr[0] == null)
+      if(arr[0] == null){
+        this.presentToast();
         this.router.navigate(['/recommendation1']);
-      else if(!arr[1])
+      }
+      else if(!arr[1]){
+        this.presentToast();
         this.router.navigate(['/recommendation2']);
-      else if(!arr[2])
+      }
+      else if(!arr[2]){
+        this.presentToast();
         this.router.navigate(['/recommendation3']);
-      else if(!arr[3])
+      }
+      else if(!arr[3]){
+        this.presentToast();
         this.router.navigate(['/recommendation4']);
+      }
 
       this.wisataService.getWisata().subscribe(res => 
         res.map(m => {
-          console.log(m.kategori);
-
           if(m.kategori == arr[2] && m.kota == arr[3] && arr[0] == 'less'){
             if(m.harga <= 100000){
               m.gambarUrl = this.getImageUrl(m.gambar[0]);
               this.recommendResult.push(m);
-              console.log(this.recommendResult);
+              console.log(this.recommendResult.length);
             }
           }
         })
       );
     });
-
-
-    this.wisataList = this.wisataService.getWisata();
-      console.log(this.wisataList);
-    
-     
-
   }
+
   getLocalData(){
     this.storage.get('budget').then((val) => {
       this.budget = val;
@@ -101,5 +103,14 @@ export class RecommendationResultPage implements OnInit {
   tryAgain(){
     this.storage.clear();
     this.router.navigate(['/']);
+  }
+
+  async presentToast() {
+    const toast = await this.toastController.create({
+      message: 'Pilih dahulu opsi berikut.',
+      duration: 2000,
+      color: 'danger'
+    });
+    toast.present();
   }
 }

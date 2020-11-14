@@ -17,9 +17,6 @@ export class Recommendation1Page implements OnInit {
   budgetInput(event, budget){
     console.log(budget);
     this.storage.set('budget', budget);
-    this.storage.get('budget').then((val)=>{
-      console.log(val);
-    });
     this.router.navigate(['/recommendation2']);
   }
 }

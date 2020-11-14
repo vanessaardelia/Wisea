@@ -19,32 +19,41 @@
         <ion-grid>
             <ion-row>
                 <ion-col size-sm="12" size-lg="4" offset-lg="4">
-                    <ion-card color="secondary" *ngFor="let wisata of recommendResult" [routerLink]="['../explore/explore-detail', wisata.id]">
-                        <ion-img class="ion-float-left imgCard" [src]="(wisata.gambarUrl | async)"></ion-img>
-                        <ion-card-header>
-                            <ion-card-title>{{wisata.nama}}</ion-card-title>
-                        </ion-card-header>
-                        <ion-card-content>
-                            <ion-grid>
-                                <ion-row>
-                                    <ion-col size="8">
-                                        <ion-icon class="ion-float-left" src="assets/icon/date.svg"></ion-icon>
-                                        <ion-label>{{wisata.tanggal}}</ion-label>
-                                    </ion-col>
-                                    <ion-col>
-                                        <ion-icon class="ion-float-left" src="assets/icon/time.svg"></ion-icon>
-                                        <ion-label>{{wisata.jam}}</ion-label>
-                                    </ion-col>
-                                </ion-row>
-                                <ion-row>
-                                    <ion-col>
-                                        <ion-icon class="ion-float-left" src="assets/icon/money.svg"></ion-icon>
-                                        <ion-label class="ion-text-wrap">{{wisata.harga | currency:"Rp. ": true:"1.0"}}</ion-label>
-                                    </ion-col>
-                                </ion-row>
-                            </ion-grid>
-                        </ion-card-content>
-                    </ion-card>
+                    <ion-item-group lines="none" *ngFor="let wisata of recommendResult">
+                        <ion-card color="secondary" *ngIf="recommendResult.length > 0" [routerLink]="['../explore/explore-detail', wisata.id]">
+                            <ion-img class="ion-float-left imgCard" [src]="(wisata.gambarUrl | async)"></ion-img>
+                            <ion-card-header>
+                                <ion-card-title>{{wisata.nama}}</ion-card-title>
+                            </ion-card-header>
+                            <ion-card-content>
+                                <ion-grid>
+                                    <ion-row>
+                                        <ion-col size="8">
+                                            <ion-icon class="ion-float-left" src="assets/icon/date.svg"></ion-icon>
+                                            <ion-label>{{wisata.tanggal}}</ion-label>
+                                        </ion-col>
+                                        <ion-col>
+                                            <ion-icon class="ion-float-left" src="assets/icon/time.svg"></ion-icon>
+                                            <ion-label>{{wisata.jam}}</ion-label>
+                                        </ion-col>
+                                    </ion-row>
+                                    <ion-row>
+                                        <ion-col>
+                                            <ion-icon class="ion-float-left" src="assets/icon/money.svg"></ion-icon>
+                                            <ion-label class="ion-text-wrap">{{wisata.harga | currency:"Rp. ": true:"1.0"}}</ion-label>
+                                        </ion-col>
+                                    </ion-row>
+                                </ion-grid>
+                            </ion-card-content>
+                        </ion-card>
+                    </ion-item-group>
+                    <ion-item-group *ngIf="recommendResult.length == 0">
+                        <ion-item>
+                            <h2 color="medium" class="ion-text-wrap ion-text-center">
+                                Ops, maaf belum ada rekomendasi untuk Anda :(
+                            </h2>
+                        </ion-item>
+                    </ion-item-group>
                 </ion-col>
             </ion-row>
         </ion-grid>

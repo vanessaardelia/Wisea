@@ -4,6 +4,7 @@ import {Observable} from 'rxjs';
 import {AngularFireStorage} from '@angular/fire/storage';
 import {map} from 'rxjs/operators';
 import {Wisata} from '../../model/wisata.interface';
+import {NavController} from "@ionic/angular";
 
 @Component({
   selector: 'app-explore',
@@ -18,6 +19,7 @@ export class ExplorePage implements OnInit {
   constructor(
       private wisataService: WisataService,
       private storage: AngularFireStorage,
+      private navCtrl: NavController
   ) { }
 
   ngOnInit() {
@@ -43,6 +45,10 @@ export class ExplorePage implements OnInit {
 
   getImageUrl(imageName) {
     return this.storage.ref(`wisata/${imageName}`).getDownloadURL();
+  }
+
+  goToListItem($event, order) {
+    this.navCtrl.navigateForward(`/menu/tabs/explore/list-item/${order}`);
   }
 
 }

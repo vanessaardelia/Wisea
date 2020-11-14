@@ -1,0 +1,54 @@
+<!--#...: ViewChild-->
+<div class="drawer" #drawer>
+  <div class="ion-text-center">
+    <ion-button fill="clear" expand="full" (click)="toggleDrawer()">
+      <div class="drawer-pull"></div>
+    </ion-button>
+  </div>
+  <ion-grid fixed>
+    <ion-row>
+      <ion-col>
+        <p class="ion-no-margin" style="font-weight: bold; text-transform: uppercase;">{{ (wisataDetail | async)?.nama }}</p>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-badge class="ion-no-margin" color="warning">{{ (wisataDetail | async)?.tiketTerjual }} telah membeli tiket</ion-badge>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <p class="ion-no-margin" style="font-weight: bold; color: orange">{{ (wisataDetail | async)?.harga | currency:'IDR':'symbol-narrow':'3.0' }} / tiket</p>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-button shape="round" expand="full">Beli</ion-button>
+      </ion-col>
+    </ion-row>
+    <hr>
+    <ion-row>
+      <ion-col>
+        <ion-icon name="calendar" class="ion-margin-end"></ion-icon>
+        <p class="ion-no-margin" style="display: inline-block">{{ (wisataDetail | async)?.tanggal }}</p>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-icon name="time" class="ion-margin-end"></ion-icon>
+        <p class="ion-no-margin" style="display: inline-block">{{ (wisataDetail | async)?.jam }}</p>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-icon name="location" class="ion-margin-end"></ion-icon>
+        <p class="ion-no-margin" style="display: inline-block">{{ (wisataDetail | async)?.lokasi }}</p>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <p class="ion-no-margin ion-text-justify text-truncate">{{ (wisataDetail | async)?.deskripsi }}</p>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</div>

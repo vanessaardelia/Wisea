@@ -1,7 +1,10 @@
+import {Observable} from "rxjs";
+
 export interface WisataDetail {
     id: string;
     deskripsi: string;
     gambar: Array<string>;
+    gambarUrl: Observable<string[]>;
     harga: number;
     jam: string;
     kategori: string;

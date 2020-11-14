@@ -11,11 +11,11 @@ const routes: Routes = [
   {
     path: 'explore-detail/:id',
     loadChildren: () => import('./explore-detail/explore-detail.module').then(m => m.ExploreDetailPageModule)
-  },  {
-    path: 'list-item',
+  },
+  {
+    path: 'list-item/:order',
     loadChildren: () => import('./list-item/list-item.module').then( m => m.ListItemPageModule)
   }
-
 ];
 
 @NgModule({

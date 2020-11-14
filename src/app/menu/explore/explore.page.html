@@ -5,7 +5,7 @@
 </ion-header>
 
 <ion-content [fullscreen]="true" color="background">
-  <ion-searchbar placeholder="Cari wisata favoritmu" class="ion-padding" style="padding-bottom: 0"></ion-searchbar>
+  <ion-searchbar placeholder="Cari wisata favoritmu" class="ion-padding" style="padding-bottom: 0" (ionFocus)="goToListItem($event)"></ion-searchbar>
   <ion-slides>
     <ion-slide class="ion-padding">
       <ion-img src="https://via.placeholder.com/350x150.png" style="width: 100%; object-fit: cover; border-radius: 20px; overflow: hidden"></ion-img>
@@ -19,19 +19,19 @@
   </ion-slides>
   <ion-grid class="ion-margin-bottom">
     <ion-row class="ion-justify-content-evenly">
-      <ion-col class="ion-text-center box" size="2">
+      <ion-col class="ion-text-center box" size="2" (click)="goToListItem($event, 'trending')">
         <ion-icon name="trending-up-outline" style="font-size: 28px;"></ion-icon>
         <p class="ion-no-margin" style="font-size: 12px;">Trending</p>
       </ion-col>
-      <ion-col class="ion-text-center box" size="2">
+      <ion-col class="ion-text-center box" size="2" (click)="goToListItem($event, 'latest')">
         <ion-icon name="bag-add-outline" style="font-size: 28px;"></ion-icon>
         <p class="ion-no-margin" style="font-size: 12px;">Latest</p>
       </ion-col>
-      <ion-col class="ion-text-center box" size="2">
+      <ion-col class="ion-text-center box" size="2" (click)="goToListItem($event, 'low-budget')">
         <ion-icon name="pricetags-outline" style="font-size: 28px;"></ion-icon>
         <p class="ion-no-margin" style="font-size: 12px;">Low Rp.</p>
       </ion-col>
-      <ion-col class="ion-text-center box" size="2">
+      <ion-col class="ion-text-center box" size="2" (click)="goToListItem($event, 'near-me')">
         <ion-icon name="location-outline" style="font-size: 28px;"></ion-icon>
         <p class="ion-no-margin" style="font-size: 12px;">Near Me</p>
       </ion-col>

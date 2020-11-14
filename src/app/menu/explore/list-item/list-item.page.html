@@ -5,33 +5,38 @@
 </ion-header>
 
 <ion-content [fullscreen]="true" color="background">
-  <ion-searchbar placeholder="Cari wisata favoritmu" class="ion-padding"></ion-searchbar>
-  <ion-list>
-    <ion-item button lines="none" class="ion-margin" *ngFor="let wisata of (wisataList | async)" [routerLink]="['./explore-detail', wisata.id]">
-      <ion-thumbnail slot="start">
-        <ion-img [src]="(wisata.gambarUrl | async)"></ion-img>
+  <ion-searchbar #searchbar="ngModel" ngModel placeholder="Cari wisata favoritmu" class="ion-padding" (ionInput)="searchWisata($event)" showCancelButton="focus"></ion-searchbar>
+  <p class="ion-text-center" *ngIf="wisataFilter?.length === 0">Pencarian tidak ditemukan</p>
+  <ion-list class="ion-no-padding">
+    <ion-item button lines="none" class="ion-margin ion-no-padding" *ngFor="let wisata of (wisataFilter)" (click)="goToExploreDetail(wisata.id)">
+      <ion-thumbnail slot="start" class="ion-no-margin ion-margin-end" style="height: 13vh; width: 13vh">
+        <ion-img [src]="(wisata.gambarUrl | async)" style="border-top-left-radius: 10px; border-bottom-left-radius: 10px;"></ion-img>
       </ion-thumbnail>
-      <ion-label>
-        <h3>{{ wisata.nama }}</h3>
-        <p>{{ wisata.harga | currency:'IDR':'symbol-narrow':'3.0' }}</p>
+      <ion-label class="ion-no-margin">
+        <p class="ion-no-margin" style="font-weight: bold; text-transform: uppercase;">{{ wisata.nama }}</p>
+        <ion-grid fixed class="ion-no-padding">
+          <ion-row>
+            <ion-col size="6" class="ion-no-padding">
+              <ion-icon class="ion-float-left" style="margin-right: 10px" src="assets/icon/money.svg"></ion-icon>
+              <p>{{ wisata.harga | currency:'IDR':'symbol-narrow':'3.0' }}</p>
+            </ion-col>
+            <ion-col size="6" class="ion-no-padding">
+              <ion-icon class="ion-float-left" style="margin-right: 10px" src="assets/icon/date.svg"></ion-icon>
+              <p style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">{{ wisata.tanggal }}</p>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col size="6" class="ion-no-padding">
+              <ion-icon class="ion-float-left" style="margin-right: 10px" src="assets/icon/gps.svg"></ion-icon>
+              <p style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">{{ wisata.tiketTerjual }}</p>
+            </ion-col>
+            <ion-col size="6" class="ion-no-padding">
+              <ion-icon class="ion-float-left" style="margin-right: 10px" src="assets/icon/location.svg"></ion-icon>
+              <p style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">{{ wisata.lokasi }}</p>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
       </ion-label>
     </ion-item>
   </ion-list>
-<!--  <ion-grid fixed>-->
-<!--    <ion-row>-->
-<!--      <ion-col size="6" *ngFor="let wisata of (wisataList | async)" [routerLink]="['./explore-detail', wisata.id]">-->
-<!--        <ion-card>-->
-<!--          <ion-img [src]="(wisata.gambarUrl | async)"></ion-img>-->
-<!--          <ion-card-header>-->
-<!--            <ion-text>{{ wisata.nama }}</ion-text>-->
-<!--          </ion-card-header>-->
-<!--          <ion-card-content>-->
-<!--            <ion-label>-->
-<!--              <p>{{ wisata.harga | currency:'IDR':'symbol-narrow':'3.0' }}</p>-->
-<!--            </ion-label>-->
-<!--          </ion-card-content>-->
-<!--        </ion-card>-->
-<!--      </ion-col>-->
-<!--    </ion-row>-->
-<!--  </ion-grid>-->
 </ion-content>

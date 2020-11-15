@@ -27,9 +27,9 @@
                   <ion-label style="font-size: 12px;">{{ (wisataList | async)?.kategori }}</ion-label>
                 </ion-chip>
                 <ion-item-group>
-                  <ion-row>
-                    <ion-icon name="bag-handle-outline" class="header__icon"></ion-icon>
-                    <p>{{ (wisataList | async)?.harga }}</p>
+                  <ion-row style="display: flex;">
+                    <ion-icon name="bag-handle-outline" style="font-size: 16px; align-self: center; margin-right: 8px;"></ion-icon>
+                    <p>{{ (wisataList | async)?.harga | currency:'IDR':'symbol-narrow':'3.0' }}</p>
                   </ion-row>
                 </ion-item-group>
               </ion-row>

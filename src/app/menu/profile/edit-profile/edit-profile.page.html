@@ -9,6 +9,31 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
-
+<ion-content [fullscreen]="true" color="background">
+  <ion-item-group id="container">
+    <ion-item lines='none'>
+      <ion-avatar class="proflePic">
+        <ion-img src="assets/profile/account.svg"></ion-img>
+      </ion-avatar>
+    </ion-item>
+    <form class="edit-form" [formGroup]="form">
+      <mat-form-field appearance="standard">
+        <mat-label>Nama Lengkap</mat-label>
+        <input matInput formControlName="nama">
+      </mat-form-field>
+      <mat-form-field appearance="standard">
+        <mat-label>Username</mat-label>
+        <input matInput formControlName="username">
+      </mat-form-field>
+      <mat-form-field appearance="standard">
+        <mat-label>Email</mat-label>
+        <input matInput formControlName="email">
+      </mat-form-field>
+      <mat-form-field appearance="standard">
+        <mat-label>Nomor Telepon</mat-label>
+        <input matInput formControlName="telepon">
+      </mat-form-field>
+      <ion-button (click)="onSubmit()" expand="block">Submit</ion-button>
+    </form>
+    </ion-item-group>
 </ion-content>

@@ -61,16 +61,11 @@ const routes: Routes = [
   {
     path: 'splash-screen',
     loadChildren: () => import('./splash-screen/splash-screen.module').then( m => m.SplashScreenPageModule)
-<<<<<<< HEAD
   },
   {
     path: 'history',
     loadChildren: () => import('./history/history.module').then( m => m.HistoryPageModule)
   },
-
-=======
-  }
->>>>>>> b413d424f852b0c568875cde2b04470fd434d6bc
 ];
 
 @NgModule({

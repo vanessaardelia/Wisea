@@ -20,6 +20,7 @@ export class ShoppingCartPage implements OnInit {
   total: number;
   qty: number;
   max: number;
+  harga: number;
 
   constructor(
     private route: ActivatedRoute,
@@ -38,11 +39,12 @@ export class ShoppingCartPage implements OnInit {
           this.imageDetail[index] = this.getImageUrl(gambar);
         });
         this.max = wisataList.tiketTerjual;
+        this.harga = wisataList.harga;
+        this.total = this.harga;
+        this.qty = 1;
         return wisataList;
       })
     );
-    this.total = 0;
-    this.qty = 1;
   }
 
   getImageUrl(imageName) {
@@ -51,6 +53,7 @@ export class ShoppingCartPage implements OnInit {
 
   incrementQty() {
     this.qty++;
+    this.total = this.qty * this.harga;
     if(this.qty > this.max) {
       this.qty = this.max;
     }
@@ -58,8 +61,10 @@ export class ShoppingCartPage implements OnInit {
 
   decrementQty() {
     this.qty--;
+    this.total = this.qty * this.harga;
     if(this.qty < 1) {
       this.qty = 1;
+      this.total = this.harga;
     }
   }
 

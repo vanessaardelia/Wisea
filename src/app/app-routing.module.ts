@@ -3,7 +3,8 @@ import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 import {canActivate, redirectLoggedInTo, redirectUnauthorizedTo} from "@angular/fire/auth-guard";
 
 const redirectUnauthorizedToLogin = () => redirectUnauthorizedTo(['/']);
-const redirectLoggedInToHome = () => redirectLoggedInTo(['/home']);
+// const redirectLoggedInToHome = () => redirectLoggedInTo(['/home']);
+const redirectLoggedInToHome = () => redirectLoggedInTo(['/menu/tabs/home']);
 
 const routes: Routes = [
   {
@@ -11,11 +12,11 @@ const routes: Routes = [
     redirectTo: 'login',
     pathMatch: 'full'
   },
-  {
-    path: 'home',
-    loadChildren: () => import('./home/home.module').then( m => m.HomePageModule),
-    ...canActivate(redirectUnauthorizedToLogin)
-  },
+  // {
+  //   path: 'home',
+  //   loadChildren: () => import('./home/home.module').then( m => m.HomePageModule),
+  //   ...canActivate(redirectUnauthorizedToLogin)
+  // },
   {
     path: 'recommendation1',
     loadChildren: () => import('./recommend/recommendation1/recommendation1.module').then( m => m.Recommendation1PageModule)
@@ -60,12 +61,16 @@ const routes: Routes = [
   {
     path: 'splash-screen',
     loadChildren: () => import('./splash-screen/splash-screen.module').then( m => m.SplashScreenPageModule)
+<<<<<<< HEAD
   },
   {
     path: 'history',
     loadChildren: () => import('./history/history.module').then( m => m.HistoryPageModule)
   },
 
+=======
+  }
+>>>>>>> b413d424f852b0c568875cde2b04470fd434d6bc
 ];
 
 @NgModule({

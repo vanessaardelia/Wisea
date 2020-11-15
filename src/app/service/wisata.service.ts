@@ -13,8 +13,25 @@ export class WisataService {
       private firestore: AngularFirestore
   ) { }
 
-  getWisata(): Observable<Wisata[]> {
-    return this.firestore.collection<Wisata>('wisata').valueChanges();
+  getWisata(category = null, order = null): Observable<Wisata[]> {
+    return this.firestore.collection<Wisata>('wisata', ref => {
+      if (category) {
+        return ref.where('kategori', '==', category);
+      }
+      if (order) {
+        if (order === 'trending') {
+          return ref.orderBy('tiketTerjual', 'desc');
+        } else if (order === 'latest') {
+          console.log('aa');
+          return ref.orderBy('id', 'desc');
+        } else if (order === 'low-budget') {
+          return ref.orderBy('harga');
+        } else if (order === 'near-me') {
+          return ref.orderBy('lokasi');
+        }
+      }
+      return ref;
+    }).valueChanges();
   }
 
   getWisataDetail(wisataId): Observable<WisataDetail> {

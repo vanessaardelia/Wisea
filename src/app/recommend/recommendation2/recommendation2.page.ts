@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { ToastController } from '@ionic/angular';
 import { Storage } from '@ionic/storage';
 
 @Component({
@@ -9,12 +10,14 @@ import { Storage } from '@ionic/storage';
 })
 export class Recommendation2Page implements OnInit {
 
-  constructor(private router: Router, private storage: Storage) { }
+  constructor(private router: Router, private storage: Storage, private toastController: ToastController) { }
 
   ngOnInit() {
     this.storage.get('budget').then((val) => {
-      if(!val)
+      if(!val){
+        this.presentToast();
         this.router.navigate(['/recommendation1']);
+      }
     });
   }
 
@@ -22,5 +25,14 @@ export class Recommendation2Page implements OnInit {
     console.log(goWith);
     this.storage.set('goWith', goWith);
     this.router.navigate(['/recommendation3']);
+  }
+
+  async presentToast() {
+    const toast = await this.toastController.create({
+      message: 'Pilih dahulu opsi berikut.',
+      duration: 2000,
+      color: 'danger'
+    });
+    toast.present();
   }
 }

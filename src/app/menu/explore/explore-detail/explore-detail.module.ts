@@ -7,13 +7,15 @@ import { IonicModule } from '@ionic/angular';
 import { ExploreDetailPageRoutingModule } from './explore-detail-routing.module';
 
 import { ExploreDetailPage } from './explore-detail.page';
+import {SharedComponentsModule} from "../../../components/shared-components.module";
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    ExploreDetailPageRoutingModule
+    ExploreDetailPageRoutingModule,
+    SharedComponentsModule
   ],
   declarations: [ExploreDetailPage]
 })

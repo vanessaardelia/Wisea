@@ -1,20 +1,76 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-title>explore</ion-title>
+  <ion-toolbar color="primary">
+    <ion-title>Wisea</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
-  <ion-list>
-    <ion-item *ngFor="let wisata of (wisataList | async)" [routerLink]="['./explore-detail', wisata.id]">
-      <ion-thumbnail slot="start">
-        <ion-img [src]="(wisata.gambarUrl | async)"></ion-img>
-      </ion-thumbnail>
-      <ion-label>
-        <p>{{ wisata.id }}</p>
-        <p>{{ wisata.harga }}</p>
-        <p>{{ wisata.nama }}</p>
-      </ion-label>
-    </ion-item>
-  </ion-list>
+<ion-content [fullscreen]="true" color="background">
+  <ion-searchbar placeholder="Cari wisata favoritmu" class="ion-padding" style="padding-bottom: 0" (ionFocus)="goToListItem($event)"></ion-searchbar>
+  <ion-slides>
+    <ion-slide class="ion-padding">
+      <ion-img src="https://via.placeholder.com/350x150.png" style="width: 100%; object-fit: cover; border-radius: 20px; overflow: hidden"></ion-img>
+    </ion-slide>
+    <ion-slide class="ion-padding">
+      <ion-img src="https://via.placeholder.com/350x150.png" style="width: 100%; object-fit: cover; border-radius: 20px; overflow: hidden"></ion-img>
+    </ion-slide>
+    <ion-slide class="ion-padding">
+      <ion-img src="https://via.placeholder.com/350x150.png" style="width: 100%; object-fit: cover; border-radius: 20px; overflow: hidden"></ion-img>
+    </ion-slide>
+  </ion-slides>
+  <ion-grid class="ion-margin-bottom">
+    <ion-row class="ion-justify-content-evenly">
+      <ion-col class="ion-text-center box" size="2" (click)="goToListItem($event, 'trending')">
+        <ion-icon name="trending-up-outline" style="font-size: 28px;"></ion-icon>
+        <p class="ion-no-margin" style="font-size: 12px;">Trending</p>
+      </ion-col>
+      <ion-col class="ion-text-center box" size="2" (click)="goToListItem($event, 'latest')">
+        <ion-icon name="bag-add-outline" style="font-size: 28px;"></ion-icon>
+        <p class="ion-no-margin" style="font-size: 12px;">Latest</p>
+      </ion-col>
+      <ion-col class="ion-text-center box" size="2" (click)="goToListItem($event, 'low-budget')">
+        <ion-icon name="pricetags-outline" style="font-size: 28px;"></ion-icon>
+        <p class="ion-no-margin" style="font-size: 12px;">Low Rp.</p>
+      </ion-col>
+      <ion-col class="ion-text-center box" size="2" (click)="goToListItem($event, 'near-me')">
+        <ion-icon name="location-outline" style="font-size: 28px;"></ion-icon>
+        <p class="ion-no-margin" style="font-size: 12px;">Near Me</p>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <!--  Pertunjukan -->
+  <h4 class="ion-no-margin ion-margin-start" style="font-weight: bold; margin-bottom: 5px">Lorem Ipsum</h4>
+  <p class="ion-no-margin ion-margin-start">Lorem Ipsum Lorem Ipsum</p>
+  <ion-slides [options]="{ slidesPerView: 'auto'}" style="padding: 8px;">
+    <ion-slide *ngFor="let wisata of (pertunjukanList | async)" [routerLink]="['./explore-detail', wisata.id]" style="width: 150px">
+      <ion-card style="height: 150px; box-shadow: none; border-radius: 0;">
+        <ion-img [src]="(wisata.gambarUrl | async)" style="height: 100px; margin-bottom: 10px; object-fit: cover"></ion-img>
+        <ion-card-subtitle class="ion-text-left" style="margin-bottom: 5px;  overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">{{ wisata.nama }}</ion-card-subtitle>
+        <ion-card-subtitle class="ion-text-left" style="font-weight: bold">{{ wisata.harga | currency:'IDR':'symbol-narrow':'3.0' }}</ion-card-subtitle>
+      </ion-card>
+    </ion-slide>
+  </ion-slides>
+  <!--  Museum -->
+  <h4 class="ion-no-margin ion-margin-start" style="font-weight: bold; margin-bottom: 5px">Lorem Ipsum</h4>
+  <p class="ion-no-margin ion-margin-start">Lorem Ipsum Lorem Ipsum</p>
+  <ion-slides [options]="{ slidesPerView: 'auto'}" style="padding: 8px;">
+    <ion-slide *ngFor="let wisata of (pertunjukanList | async)" [routerLink]="['./explore-detail', wisata.id]" style="width: 150px">
+      <ion-card style="height: 150px; box-shadow: none; border-radius: 0;">
+        <ion-img [src]="(wisata.gambarUrl | async)" style="height: 100px; margin-bottom: 10px; object-fit: cover"></ion-img>
+        <ion-card-subtitle class="ion-text-left" style="margin-bottom: 5px;  overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">{{ wisata.nama }}</ion-card-subtitle>
+        <ion-card-subtitle class="ion-text-left" style="font-weight: bold">{{ wisata.harga | currency:'IDR':'symbol-narrow':'3.0' }}</ion-card-subtitle>
+      </ion-card>
+    </ion-slide>
+  </ion-slides>
+  <!--  Workshop -->
+  <h4 class="ion-no-margin ion-margin-start" style="font-weight: bold; margin-bottom: 5px">Lorem Ipsum</h4>
+  <p class="ion-no-margin ion-margin-start">Lorem Ipsum Lorem Ipsum</p>
+  <ion-slides [options]="{ slidesPerView: 'auto'}" style="padding: 8px;">
+    <ion-slide *ngFor="let wisata of (pertunjukanList | async)" [routerLink]="['./explore-detail', wisata.id]" style="width: 150px">
+      <ion-card style="height: 150px; box-shadow: none; border-radius: 0;">
+        <ion-img [src]="(wisata.gambarUrl | async)" style="height: 100px; margin-bottom: 10px; object-fit: cover"></ion-img>
+        <ion-card-subtitle class="ion-text-left" style="margin-bottom: 5px;  overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">{{ wisata.nama }}</ion-card-subtitle>
+        <ion-card-subtitle class="ion-text-left" style="font-weight: bold">{{ wisata.harga | currency:'IDR':'symbol-narrow':'3.0' }}</ion-card-subtitle>
+      </ion-card>
+    </ion-slide>
+  </ion-slides>
 </ion-content>

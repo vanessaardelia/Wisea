@@ -13,8 +13,8 @@ const routes: Routes = [
     pathMatch: 'full'
   },
   // {
-  //   path: 'home',
-  //   loadChildren: () => import('./home/home.module').then( m => m.HomePageModule),
+  //   path: 'redirectLoggedInToHome',
+  //   loadChildren: () => import('/menu/tabs/home).then( m => m.HomePageModule),
   //   ...canActivate(redirectUnauthorizedToLogin)
   // },
   {
@@ -61,16 +61,16 @@ const routes: Routes = [
   {
     path: 'splash-screen',
     loadChildren: () => import('./splash-screen/splash-screen.module').then( m => m.SplashScreenPageModule)
-<<<<<<< HEAD
   },
   {
     path: 'history',
     loadChildren: () => import('./history/history.module').then( m => m.HistoryPageModule)
   },
+  {
+    path: 'shopping-cart/:id',
+    loadChildren: () => import('./shopping-cart/shopping-cart.module').then( m => m.ShoppingCartPageModule)
+  },
 
-=======
-  }
->>>>>>> b413d424f852b0c568875cde2b04470fd434d6bc
 ];
 
 @NgModule({

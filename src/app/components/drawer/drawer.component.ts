@@ -2,6 +2,7 @@ import {AfterViewInit, Component, ElementRef, EventEmitter, Input, OnInit, Outpu
 import {GestureController, Platform} from "@ionic/angular";
 import {WisataDetail} from "../../model/wisata-detail.interface";
 import {Observable} from "rxjs";
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-drawer',

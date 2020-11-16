@@ -8,13 +8,18 @@ import { ResetPasswordPageRoutingModule } from './reset-password-routing.module'
 
 import { ResetPasswordPage } from './reset-password.page';
 
+import { MatInputModule } from '@angular/material/input';
+import { MatFormFieldModule } from '@angular/material/form-field';
+
 @NgModule({
     imports: [
         CommonModule,
         FormsModule,
         IonicModule,
         ResetPasswordPageRoutingModule,
-        ReactiveFormsModule
+        ReactiveFormsModule,
+        MatInputModule,
+        MatFormFieldModule
     ],
   declarations: [ResetPasswordPage]
 })

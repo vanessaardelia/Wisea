@@ -12,6 +12,8 @@ import {ConfirmPasswordValidator} from '../../register/confirm-password.validato
 })
 export class EmailConfirmationPage implements OnInit {
   confirmPasswordForm: FormGroup;
+  confirmHide = true;
+  passwordHide = true;
 
   constructor(
       private formBuilder: FormBuilder,

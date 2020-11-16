@@ -72,7 +72,6 @@ export class RecommendationResultPage implements OnInit {
             if(m.harga <= 100000){
               m.gambarUrl = this.getImageUrl(m.gambar[0]);
               this.recommendResult.push(m);
-              console.log(this.recommendResult.length);
             }
           }
         })

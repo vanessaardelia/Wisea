@@ -5,5 +5,5 @@ export interface UserData {
   name: string;
   photo: string;
   phone: string;
-  balance: string;
+  balance: number;
 }

@@ -48,7 +48,7 @@ ion-card {
 
 :root {
     /* Set the font family of the entire app */
-  --ion-font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", "Roboto", sans-serif;
+  --ion-font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", "Montserrat", sans-serif;
 
     /** primary **/
     --ion-color-primary: #7BA57F;
@@ -251,4 +251,3 @@ ion-card {
     }
 }
 html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

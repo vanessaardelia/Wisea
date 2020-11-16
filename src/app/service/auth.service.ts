@@ -22,7 +22,6 @@ export class AuthService {
   ) {
     this.userAuth.onAuthStateChanged(user => {
       this.currentUser = user;
-      console.log('Changed: ', user);
     });
   }
 

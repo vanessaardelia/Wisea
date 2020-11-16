@@ -15,4 +15,18 @@ export class HistoryService {
   getHistory(): Observable<History[]> {
     return this.firestore.collection<History>('history').valueChanges();
   }
+
+  addHistory(jumlah: number, nama: string, tanggal: Date, tiket: string, total: number){ 
+    const id = this.firestore.createId();
+    const status = 'terbayar'
+
+    return this.firestore.doc(`history/${id}`).set({
+      jumlah,
+      nama,
+      status,
+      tanggal,
+      tiket,
+      total
+    });
+  }
 }

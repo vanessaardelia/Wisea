@@ -13,13 +13,13 @@
   <ion-item-group id="container">
     <ion-item lines='none'>
       <ion-avatar class="proflePic">
-        <ion-img src="assets/profile/account.svg"></ion-img>
+        <ion-img src="{{ userProfile?.photo }}"></ion-img>
       </ion-avatar>
     </ion-item>
-    <ion-title size="large" class="ion-text-center userName">Thomas Imanuel</ion-title>
-    <ion-label class="ion-padding-top">thomasimanuel@gmail.com</ion-label>
+    <ion-title size="large" class="ion-text-center userName">{{ userProfile?.name }}</ion-title>
+    <ion-label class="ion-padding-top">{{ userProfile?.email }}</ion-label>
     <ion-label class="ion-padding-top">
-      <ion-icon name="phone-portrait-sharp"></ion-icon>08123455434
+      <ion-icon name="phone-portrait-sharp"></ion-icon>{{ userProfile?.phone }}
     </ion-label>
     <ion-item lines='none'>
       <ion-card>
@@ -27,7 +27,7 @@
           <ion-row class="ion-align-items-center">
             <ion-col size="8">
               <p>Saldo kamu</p>
-              <p>Rp 450.000,00</p>
+              <p>{{ userProfile?.balance | currency:'IDR':'symbol-narrow':'1.0' }}</p>
             </ion-col>
             <div class="verticalLine"></div>
             <ion-col size="4">

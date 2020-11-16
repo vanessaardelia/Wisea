@@ -13,8 +13,8 @@ const routes: Routes = [
     pathMatch: 'full'
   },
   // {
-  //   path: 'redirectLoggedInToHome',
-  //   loadChildren: () => import('/menu/tabs/home).then( m => m.HomePageModule),
+  //   path: 'home',
+  //   loadChildren: () => import('./home/home.module').then( m => m.HomePageModule),
   //   ...canActivate(redirectUnauthorizedToLogin)
   // },
   {
@@ -67,14 +67,13 @@ const routes: Routes = [
     loadChildren: () => import('./history/history.module').then( m => m.HistoryPageModule)
   },
   {
+    path: 'history',
+    loadChildren: () => import('./history/history.module').then( m => m.HistoryPageModule)
+  },
+  {
     path: 'shopping-cart/:id',
     loadChildren: () => import('./shopping-cart/shopping-cart.module').then( m => m.ShoppingCartPageModule)
-  },  {
-    path: 'booking',
-    loadChildren: () => import('./booking/booking.module').then( m => m.BookingPageModule)
-  },
-
-
+  }
 ];
 
 @NgModule({

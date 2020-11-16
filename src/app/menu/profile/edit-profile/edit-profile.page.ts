@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {FormGroup, FormControl, Validators} from '@angular/forms';
 import {AuthService} from '../../../service/auth.service';
+import {AlertController, LoadingController} from '@ionic/angular';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-edit-profile',
@@ -9,32 +11,71 @@ import {AuthService} from '../../../service/auth.service';
 })
 export class EditProfilePage implements OnInit {
   form: FormGroup;
+  userProfile: any;
+  currentPhoto: any;
 
-  constructor(private authService: AuthService) { }
+  constructor(
+      private authService: AuthService,
+      private loadingController: LoadingController,
+      private alertController: AlertController,
+      private router: Router,
+  ) { }
 
-  ngOnInit() {
+  async ngOnInit() {
+    const loading = await this.loadingController.create();
+    await loading.present();
+
+    this.authService.getUserData().subscribe(ref => {
+      this.authService.getUserPhotoUrl(ref.photo).subscribe(res => {
+        loading.dismiss();
+
+        this.userProfile = ref;
+        this.currentPhoto = ref.photo;
+        this.userProfile.photo = res;
+      });
+    });
+
     this.form = new FormGroup({
-      nama: new FormControl('Thomas Imanuel', {
+      name: new FormControl(null, {
         updateOn: 'change',
         validators: [Validators.required]
       }),
-      username: new FormControl('Thomas7209', {
+      username: new FormControl(null, {
         updateOn: 'change',
         validators: [Validators.required]
       }),
-      email: new FormControl('thomasimanuel@gmail.com', {
+      email: new FormControl(null, {
         updateOn: 'change',
         validators: [Validators.required]
       }),
-      telepon: new FormControl('08123455434', {
+      phone: new FormControl(null, {
+        updateOn: 'change',
+        validators: [Validators.required]
+      }),
+      photo: new FormControl(null, {
         updateOn: 'change',
         validators: [Validators.required]
       }),
     });
   }
 
-  onSubmit(){
-    // this.contactsService.editContact(editContact);
-  }
+  async edit() {
+    const loading = await this.loadingController.create();
+    await loading.present();
+    this.form.value.photo = this.currentPhoto;
 
+    this.authService.editUserData(this.form.value).then(user => {
+      loading.dismiss();
+      this.router.navigateByUrl('/menu/tabs/profile', { replaceUrl: true });
+    }, async err => {
+      loading.dismiss();
+      const alert = await this.alertController.create({
+        header: 'Edit profile gagal',
+        message: err.message,
+        buttons: ['OK'],
+      });
+
+      await alert.present();
+    });
+  }
 }

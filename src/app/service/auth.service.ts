@@ -56,6 +56,15 @@ export class AuthService {
     return await this.userAuth.confirmPasswordReset(code, password);
   }
 
+  async editUserData(userData) {
+    this.userStore.doc(`users/${this.currentUser.uid}`).update({
+      email: userData.email,
+      name: userData.name,
+      username: userData.username,
+      phone: userData.phone,
+      photo: userData.photo,
+    });
+  }
 
   getUserData(): Observable<any> {
     return this.userStore.collection('users').doc(this.currentUser.uid).valueChanges();

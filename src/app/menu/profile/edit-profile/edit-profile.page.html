@@ -9,31 +9,31 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true" color="background">
+<ion-content [fullscreen]="true" color="background" *ngIf="userProfile">
   <ion-item-group id="container">
     <ion-item lines='none'>
       <ion-avatar class="proflePic">
-        <ion-img src="assets/profile/account.svg"></ion-img>
+        <ion-img src="{{ userProfile?.photo }}"></ion-img>
       </ion-avatar>
     </ion-item>
     <form class="edit-form" [formGroup]="form">
       <mat-form-field appearance="standard">
         <mat-label>Nama Lengkap</mat-label>
-        <input matInput formControlName="nama">
+        <input matInput formControlName="name" ngModel="{{ userProfile?.name }}">
       </mat-form-field>
       <mat-form-field appearance="standard">
         <mat-label>Username</mat-label>
-        <input matInput formControlName="username">
+        <input matInput formControlName="username" ngModel="{{ userProfile?.username }}">
       </mat-form-field>
       <mat-form-field appearance="standard">
         <mat-label>Email</mat-label>
-        <input matInput formControlName="email">
+        <input matInput formControlName="email" ngModel="{{ userProfile?.email }}">
       </mat-form-field>
       <mat-form-field appearance="standard">
         <mat-label>Nomor Telepon</mat-label>
-        <input matInput formControlName="telepon">
+        <input matInput formControlName="phone" ngModel="{{ userProfile?.phone }}">
       </mat-form-field>
-      <ion-button (click)="onSubmit()" expand="block">Submit</ion-button>
+      <ion-button (click)="edit()" expand="block">Submit</ion-button>
     </form>
     </ion-item-group>
 </ion-content>

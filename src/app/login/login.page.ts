@@ -11,6 +11,7 @@ import {AlertController, LoadingController} from '@ionic/angular';
 })
 export class LoginPage implements OnInit {
   credentialForm: FormGroup;
+  hide = true;
 
   constructor(
       private formBuilder: FormBuilder,

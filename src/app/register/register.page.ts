@@ -12,6 +12,8 @@ import {ConfirmPasswordValidator} from './confirm-password.validator';
 })
 export class RegisterPage implements OnInit {
   credentialForm: FormGroup;
+  confirmHide = true;
+  passwordHide = true;
 
   constructor(
       private formBuilder: FormBuilder,
@@ -40,7 +42,7 @@ export class RegisterPage implements OnInit {
 
     this.authService.register(this.credentialForm.value).then(user => {
       loading.dismiss();
-      this.router.navigateByUrl('/home', { replaceUrl: true });
+      this.router.navigateByUrl('/menu/tabs/home', { replaceUrl: true });
     }, async err => {
       loading.dismiss();
       const alert = await this.alertController.create({

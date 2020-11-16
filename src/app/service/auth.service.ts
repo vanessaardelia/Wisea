@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import {AngularFireAuth} from '@angular/fire/auth';
 import {AngularFirestore} from '@angular/fire/firestore';
-import firebase from "firebase";
+import {AngularFireStorage} from '@angular/fire/storage';
+import {Observable} from 'rxjs';
 
 export interface User {
   uid: string;
@@ -14,7 +15,11 @@ export interface User {
 export class AuthService {
   currentUser: User = null;
 
-  constructor(private userAuth: AngularFireAuth, private userStore: AngularFirestore) {
+  constructor(
+      private userAuth: AngularFireAuth,
+      private userStore: AngularFirestore,
+      private storage: AngularFireStorage,
+  ) {
     this.userAuth.onAuthStateChanged(user => {
       this.currentUser = user;
       console.log('Changed: ', user);
@@ -51,8 +56,13 @@ export class AuthService {
     return await this.userAuth.confirmPasswordReset(code, password);
   }
 
-  getUserData() {
+
+  getUserData(): Observable<any> {
     return this.userStore.collection('users').doc(this.currentUser.uid).valueChanges();
+  }
+
+  getUserPhotoUrl(imageName): Observable<any> {
+    return this.storage.ref(`users/${imageName}`).getDownloadURL();
   }
 
   checkAvailablePhone(phone) {

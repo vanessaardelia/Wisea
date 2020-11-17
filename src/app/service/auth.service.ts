@@ -3,6 +3,7 @@ import {AngularFireAuth} from '@angular/fire/auth';
 import {AngularFirestore} from '@angular/fire/firestore';
 import {AngularFireStorage} from '@angular/fire/storage';
 import {Observable} from 'rxjs';
+import firebase from 'firebase';
 
 export interface User {
   uid: string;
@@ -55,13 +56,22 @@ export class AuthService {
     return await this.userAuth.confirmPasswordReset(code, password);
   }
 
-  async editUserData(userData) {
-    this.userStore.doc(`users/${this.currentUser.uid}`).update({
-      email: userData.email,
-      name: userData.name,
-      username: userData.username,
-      phone: userData.phone,
-      photo: userData.photo,
+  async editUserData(userData, password) {
+    const user = firebase.auth().currentUser;
+    const credential = firebase.auth.EmailAuthProvider.credential(user.email, password);
+
+    await user.reauthenticateWithCredential(credential).then(res => {
+      this.userStore.doc(`users/${this.currentUser.uid}`).update({
+        email: userData.email,
+        name: userData.name,
+        username: userData.username,
+        phone: userData.phone,
+        photo: userData.photo,
+      });
+
+      if (userData.email !== this.currentUser.email) {
+        user.updateEmail(userData.email);
+      }
     });
   }
 

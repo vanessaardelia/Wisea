@@ -38,6 +38,12 @@
   transform: rotate(-10deg);
 }
 
+p {
+  font-size: 14px;
+  line-height: 1.5;
+  text-align: center;
+}
+
 .reset-password {
   float: right;
   margin: 0px;
@@ -45,7 +51,7 @@
 }
 
 .register {
-  color: #946E41;
+  color: var(--ion-color-primary);
   font-weight: bold;
 }
 

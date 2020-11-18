@@ -35,7 +35,7 @@ export class AuthService {
       name: userData.name,
       username: userData.username,
       phone: userData.phone,
-      photo: 'default',
+      photo: 'account.svg',
       balance: 0,
     });
   }

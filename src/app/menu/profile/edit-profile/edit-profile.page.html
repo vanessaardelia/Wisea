@@ -20,18 +20,39 @@
       <mat-form-field appearance="standard">
         <mat-label>Nama Lengkap</mat-label>
         <input matInput formControlName="name" ngModel="{{ userProfile?.name }}">
+        <mat-error *ngIf="(form.get('name').dirty || form.get('name').touched) && form.get('name').errors">
+          <span *ngIf="form.get('name').errors.required">Full name is required</span>
+        </mat-error>
       </mat-form-field>
       <mat-form-field appearance="standard">
         <mat-label>Username</mat-label>
         <input matInput formControlName="username" ngModel="{{ userProfile?.username }}">
+        <mat-error *ngIf="(form.get('username').dirty || form.get('username').touched) && form.get('username').errors">
+          <span *ngIf="form.get('username').errors.required">Username is required</span>
+        </mat-error>
       </mat-form-field>
       <mat-form-field appearance="standard">
         <mat-label>Email</mat-label>
         <input matInput formControlName="email" ngModel="{{ userProfile?.email }}">
+        <mat-error *ngIf="(form.get('email').dirty || form.get('email').touched) && form.get('email').errors">
+          <span *ngIf="form.get('email').errors.required">Email is required</span>
+          <span *ngIf="form.get('email').errors.email">Email is invalid</span>
+        </mat-error>
       </mat-form-field>
       <mat-form-field appearance="standard">
         <mat-label>Nomor Telepon</mat-label>
         <input matInput formControlName="phone" ngModel="{{ userProfile?.phone }}">
+        <mat-error *ngIf="(form.get('phone').dirty || form.get('phone').touched) && form.get('phone').errors">
+          <span *ngIf="form.get('phone').errors.required">Phone number is required</span>
+          <span *ngIf="form.get('phone').errors.minlength || form.get('phone').errors.maxlength">Phone needs to be between 10 - 12 characters</span>
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field appearance="standard">
+        <mat-label>Password Baru</mat-label>
+        <input matInput formControlName="newPassword" [type]="'password'">
+        <mat-error *ngIf="(form.get('newPassword').dirty || form.get('newPassword').touched) && form.get('newPassword').errors">
+          <span *ngIf="form.get('newPassword').errors.minlength">Password needs to be 6 characters</span>
+        </mat-error>
       </mat-form-field>
       <ion-button (click)="confirmationAlert()" expand="block">Submit</ion-button>
     </form>

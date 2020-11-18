@@ -72,6 +72,11 @@ export class AuthService {
       if (userData.email !== this.currentUser.email) {
         user.updateEmail(userData.email);
       }
+
+      if (userData.newPassword !== null) {
+        console.log('new Password: ', userData.newPassword);
+        user.updatePassword(userData.newPassword);
+      }
     });
   }
 
@@ -85,5 +90,11 @@ export class AuthService {
 
   checkAvailablePhone(phone) {
     return this.userStore.collection('users', ref => ref.where('phone', '==', phone)).valueChanges();
+  }
+
+  async topupBalance(amount) {
+   return await this.userStore.doc(`users/${this.currentUser.uid}`).update({
+      balance: amount,
+    });
   }
 }

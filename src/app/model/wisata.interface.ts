@@ -11,4 +11,6 @@ export interface Wisata {
     nama: string;
     tanggal: string;
     tiketTerjual: string;
+    distance: number;
+    position: Array<number>;
 }

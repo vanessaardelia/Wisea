@@ -1,6 +1,8 @@
 import {Observable} from 'rxjs';
 
 export interface Wisata {
+    daerah: string;
+    jam: string;
     kategori: string;
     kota: string;
     id: string;

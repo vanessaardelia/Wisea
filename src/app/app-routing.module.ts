@@ -34,6 +34,10 @@ const routes: Routes = [
     loadChildren: () => import('./recommend/recommendation4/recommendation4.module').then( m => m.Recommendation4PageModule)
   },
   {
+    path: 'recommendation-result',
+    loadChildren: () => import('./recommend/recommendation-result/recommendation-result.module').then( m => m.RecommendationResultPageModule)
+  },
+  {
     path: 'on-boarding-screen',
     loadChildren: () => import('./on-boarding-screen/on-boarding-screen.module').then( m => m.OnBoardingScreenPageModule)
   },

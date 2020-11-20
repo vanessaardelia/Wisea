@@ -15,4 +15,5 @@ export interface WisataDetail {
     tiketTerjual: number;
     tiketTersedia: number;
     daerah: string;
+    position: Array<number>;
 }

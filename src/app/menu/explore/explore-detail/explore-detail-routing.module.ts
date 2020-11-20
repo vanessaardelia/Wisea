@@ -8,6 +8,11 @@ const routes: Routes = [
     path: '',
     component: ExploreDetailPage
   },
+  {
+    path: 'map-location/:lat:long',
+    loadChildren: () => import('./map-location/map-location.module').then( m => m.MapLocationPageModule)
+  },
+
 ];
 
 @NgModule({

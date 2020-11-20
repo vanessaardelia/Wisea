@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
-import {canActivate, redirectLoggedInTo, redirectUnauthorizedTo} from "@angular/fire/auth-guard";
+import {canActivate, redirectLoggedInTo, redirectUnauthorizedTo} from '@angular/fire/auth-guard';
 
 const redirectUnauthorizedToLogin = () => redirectUnauthorizedTo(['/']);
 // const redirectLoggedInToHome = () => redirectLoggedInTo(['/home']);
@@ -9,7 +9,7 @@ const redirectLoggedInToHome = () => redirectLoggedInTo(['/menu/tabs/home']);
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'login',
+    redirectTo: 'on-boarding-screen',
     pathMatch: 'full'
   },
   // {
@@ -34,8 +34,8 @@ const routes: Routes = [
     loadChildren: () => import('./recommend/recommendation4/recommendation4.module').then( m => m.Recommendation4PageModule)
   },
   {
-    path: 'recommendation-result',
-    loadChildren: () => import('./recommend/recommendation-result/recommendation-result.module').then( m => m.RecommendationResultPageModule)
+    path: 'on-boarding-screen',
+    loadChildren: () => import('./on-boarding-screen/on-boarding-screen.module').then( m => m.OnBoardingScreenPageModule)
   },
   {
     path: 'login',
@@ -57,10 +57,6 @@ const routes: Routes = [
   {
     path: 'explore',
     loadChildren: () => import('./menu/explore/explore.module').then(m => m.ExplorePageModule)
-  },
-  {
-    path: 'splash-screen',
-    loadChildren: () => import('./splash-screen/splash-screen.module').then( m => m.SplashScreenPageModule)
   },
   {
     path: 'history',

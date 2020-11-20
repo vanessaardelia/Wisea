@@ -46,15 +46,19 @@ export class EditProfilePage implements OnInit {
       }),
       email: new FormControl(null, {
         updateOn: 'change',
-        validators: [Validators.required]
+        validators: [Validators.required, Validators.email]
       }),
       phone: new FormControl(null, {
         updateOn: 'change',
-        validators: [Validators.required]
+        validators: [Validators.required, Validators.minLength(10), Validators.maxLength(12)]
       }),
       photo: new FormControl(null, {
         updateOn: 'change',
         validators: [Validators.required]
+      }),
+      newPassword: new FormControl(null, {
+        updateOn: 'change',
+        validators: [Validators.minLength(6)]
       }),
     });
   }

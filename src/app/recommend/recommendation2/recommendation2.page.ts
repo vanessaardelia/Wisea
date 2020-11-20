@@ -21,9 +21,9 @@ export class Recommendation2Page implements OnInit {
     });
   }
 
-  withInput(event, goWith){
-    console.log(goWith);
-    this.storage.set('goWith', goWith);
+  time(event, time){
+    console.log(time);
+    this.storage.set('time', time);
     this.router.navigate(['/recommendation3']);
   }
 

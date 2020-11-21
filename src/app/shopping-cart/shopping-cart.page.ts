@@ -119,18 +119,6 @@ export class ShoppingCartPage implements OnInit {
         
         this.historyService
         .addHistory(qty, this.userProfile.name, date, this.wisata, this.total)
-        // .then(
-        //   () => {
-        //     loading.dismiss().then(() => {
-        //       this.router.navigateByUrl('');
-        //     });
-        //   },
-        //   error => {
-        //     loading.dismiss().then(() => {
-        //       console.error(error);
-        //     });
-        //   }
-        // );
         this.router.navigateByUrl('/menu/tabs/explore', { replaceUrl: true });
       }
     });

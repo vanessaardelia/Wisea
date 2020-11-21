@@ -46,25 +46,29 @@ export class EditProfilePage implements OnInit {
       }),
       email: new FormControl(null, {
         updateOn: 'change',
-        validators: [Validators.required]
+        validators: [Validators.required, Validators.email]
       }),
       phone: new FormControl(null, {
         updateOn: 'change',
-        validators: [Validators.required]
+        validators: [Validators.required, Validators.minLength(10), Validators.maxLength(12)]
       }),
       photo: new FormControl(null, {
         updateOn: 'change',
         validators: [Validators.required]
       }),
+      newPassword: new FormControl(null, {
+        updateOn: 'change',
+        validators: [Validators.minLength(6)]
+      }),
     });
   }
 
-  async edit() {
+  async edit(confirmPassword) {
     const loading = await this.loadingController.create();
     await loading.present();
     this.form.value.photo = this.currentPhoto;
 
-    this.authService.editUserData(this.form.value).then(user => {
+    await this.authService.editUserData(this.form.value, confirmPassword).then(() => {
       loading.dismiss();
       this.router.navigateByUrl('/menu/tabs/profile', { replaceUrl: true });
     }, async err => {
@@ -77,5 +81,35 @@ export class EditProfilePage implements OnInit {
 
       await alert.present();
     });
+  }
+
+  async confirmationAlert() {
+    const alert = await this.alertController.create({
+      cssClass: 'my-custom-class',
+      header: 'Konfirmasi perubahan data diri',
+      subHeader: 'Silahkan masukkan password anda.',
+      inputs: [
+        {
+          name: 'password',
+          type: 'password',
+          placeholder: 'Password',
+          cssClass: 'specialClass',
+        }
+      ],
+      buttons: [
+        {
+          text: 'Ok',
+          handler: data => {
+            this.edit(data.password);
+          }
+        }, {
+          text: 'Cancel',
+          role: 'cancel',
+          cssClass: 'secondary',
+        }
+      ]
+    });
+
+    await alert.present();
   }
 }

@@ -29,20 +29,20 @@
     <hr>
     <ion-row>
       <ion-col>
-        <ion-icon name="calendar" class="ion-margin-end"></ion-icon>
+        <ion-icon class="ion-float-left" style="margin-right: 10px" src="assets/icon/date.svg"></ion-icon>
         <p class="ion-no-margin" style="display: inline-block">{{ (wisataDetail | async)?.tanggal }}</p>
       </ion-col>
     </ion-row>
     <ion-row>
       <ion-col>
-        <ion-icon name="time" class="ion-margin-end"></ion-icon>
+        <ion-icon class="ion-float-left" style="margin-right: 10px" src="assets/icon/time.svg"></ion-icon>
         <p class="ion-no-margin" style="display: inline-block">{{ (wisataDetail | async)?.jam }}</p>
       </ion-col>
     </ion-row>
     <ion-row>
       <ion-col>
-        <ion-icon name="location" class="ion-margin-end"></ion-icon>
-        <p class="ion-no-margin" style="display: inline-block">{{ (wisataDetail | async)?.lokasi }}</p>
+        <ion-icon class="ion-float-left" style="margin-right: 10px" src="assets/icon/location.svg"></ion-icon>
+        <p class="ion-no-margin" style="display: inline-block">{{ (wisataDetail | async)?.lokasi }}<ion-icon class="ion-float-end" style="margin-left: 5px" name="map-outline" [routerLink]="['/menu/tabs/explore/explore-detail/map-location', { lat: (wisataDetail | async)?.position[0], long: (wisataDetail | async)?.position[1] }]"></ion-icon></p>
       </ion-col>
     </ion-row>
     <ion-row>

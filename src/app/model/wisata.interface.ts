@@ -1,6 +1,8 @@
 import {Observable} from 'rxjs';
 
 export interface Wisata {
+    daerah: string;
+    jam: string;
     kategori: string;
     kota: string;
     id: string;
@@ -11,4 +13,6 @@ export interface Wisata {
     nama: string;
     tanggal: string;
     tiketTerjual: string;
+    distance: number;
+    position: Array<number>;
 }

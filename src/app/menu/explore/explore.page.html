@@ -1,8 +1,11 @@
 <ion-header [translucent]="true">
   <ion-toolbar color="primary">
-    <ion-title class="ion-text-center">
+    <ion-title class="ion-text-center" style="margin-left: -15%">
       Wisea
     </ion-title>
+    <ion-buttons slot="start">
+      <ion-menu-button menu="main-menu"></ion-menu-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
@@ -40,8 +43,8 @@
     </ion-row>
   </ion-grid>
   <!--  Pertunjukan -->
-  <h4 class="ion-no-margin ion-margin-start" style="font-weight: bold; margin-bottom: 5px">Lorem Ipsum</h4>
-  <p class="ion-no-margin ion-margin-start">Lorem Ipsum Lorem Ipsum</p>
+  <h4 class="ion-no-margin ion-margin-start" style="font-weight: bold; margin-bottom: 5px">Seni Pertunjukan</h4>
+  <p class="ion-no-margin ion-margin-start">Yuk, tonton seni pertunjukan yang kaya akan nilai budaya.</p>
   <ion-slides [options]="{ slidesPerView: 'auto'}" style="padding: 8px;">
     <ion-slide *ngFor="let wisata of (pertunjukanList | async)" [routerLink]="['./explore-detail', wisata.id]" style="width: 150px">
       <ion-card style="height: 150px; box-shadow: none; border-radius: 0;">
@@ -52,10 +55,10 @@
     </ion-slide>
   </ion-slides>
   <!--  Museum -->
-  <h4 class="ion-no-margin ion-margin-start" style="font-weight: bold; margin-bottom: 5px">Lorem Ipsum</h4>
-  <p class="ion-no-margin ion-margin-start">Lorem Ipsum Lorem Ipsum</p>
+  <h4 class="ion-no-margin ion-margin-start" style="font-weight: bold; margin-bottom: 5px">Museum</h4>
+  <p class="ion-no-margin ion-margin-start">Jelajahi museum untuk mengetahui barang-barang peninggalan nenek moyang kita.</p>
   <ion-slides [options]="{ slidesPerView: 'auto'}" style="padding: 8px;">
-    <ion-slide *ngFor="let wisata of (pertunjukanList | async)" [routerLink]="['./explore-detail', wisata.id]" style="width: 150px">
+    <ion-slide *ngFor="let wisata of (museumList | async)" [routerLink]="['./explore-detail', wisata.id]" style="width: 150px">
       <ion-card style="height: 150px; box-shadow: none; border-radius: 0;">
         <ion-img [src]="(wisata.gambarUrl | async)" style="height: 100px; margin-bottom: 10px; object-fit: cover"></ion-img>
         <ion-card-subtitle class="ion-text-left" style="margin-bottom: 5px;  overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">{{ wisata.nama }}</ion-card-subtitle>
@@ -64,10 +67,10 @@
     </ion-slide>
   </ion-slides>
   <!--  Workshop -->
-  <h4 class="ion-no-margin ion-margin-start" style="font-weight: bold; margin-bottom: 5px">Lorem Ipsum</h4>
-  <p class="ion-no-margin ion-margin-start">Lorem Ipsum Lorem Ipsum</p>
+  <h4 class="ion-no-margin ion-margin-start" style="font-weight: bold; margin-bottom: 5px">Workshop</h4>
+  <p class="ion-no-margin ion-margin-start">Ayo pelajari kesenian maupun kerajinan budaya kita yang unik.</p>
   <ion-slides [options]="{ slidesPerView: 'auto'}" style="padding: 8px;">
-    <ion-slide *ngFor="let wisata of (pertunjukanList | async)" [routerLink]="['./explore-detail', wisata.id]" style="width: 150px">
+    <ion-slide *ngFor="let wisata of (workshopList | async)" [routerLink]="['./explore-detail', wisata.id]" style="width: 150px">
       <ion-card style="height: 150px; box-shadow: none; border-radius: 0;">
         <ion-img [src]="(wisata.gambarUrl | async)" style="height: 100px; margin-bottom: 10px; object-fit: cover"></ion-img>
         <ion-card-subtitle class="ion-text-left" style="margin-bottom: 5px;  overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">{{ wisata.nama }}</ion-card-subtitle>

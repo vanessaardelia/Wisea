@@ -22,12 +22,11 @@ export class WisataService {
         if (order === 'trending') {
           return ref.orderBy('tiketTerjual', 'desc');
         } else if (order === 'latest') {
-          console.log('aa');
-          return ref.orderBy('id', 'desc');
+          return ref;
         } else if (order === 'low-budget') {
           return ref.orderBy('harga');
         } else if (order === 'near-me') {
-          return ref.orderBy('lokasi');
+          return ref;
         }
       }
       return ref;

@@ -5,6 +5,9 @@ import {AngularFireStorage} from '@angular/fire/storage';
 import {map} from 'rxjs/operators';
 import {Wisata} from '../../model/wisata.interface';
 import {NavController} from "@ionic/angular";
+import firebase from "firebase";
+import Database = firebase.database.Database;
+import {DatabaseService} from "../../service/database.service";
 
 @Component({
   selector: 'app-explore',
@@ -19,7 +22,8 @@ export class ExplorePage implements OnInit {
   constructor(
       private wisataService: WisataService,
       private storage: AngularFireStorage,
-      private navCtrl: NavController
+      private navCtrl: NavController,
+      private databaseService: DatabaseService
   ) { }
 
   ngOnInit() {

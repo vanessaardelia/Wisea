@@ -13,7 +13,7 @@ export class Recommendation3Page implements OnInit {
   constructor(private router: Router, private storage: Storage, private toastController: ToastController) { }
 
   ngOnInit() {
-    this.storage.get('goWith').then((val) => {
+    this.storage.get('time').then((val) => {
       if(!val){
         this.presentToast();
         this.router.navigate(['/recommendation2']);

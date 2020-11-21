@@ -4,17 +4,17 @@ import { FormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
-import { SplashScreenPageRoutingModule } from './splash-screen-routing.module';
+import { MapLocationPageRoutingModule } from './map-location-routing.module';
 
-import { SplashScreenPage } from './splash-screen.page';
+import { MapLocationPage } from './map-location.page';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    SplashScreenPageRoutingModule
+    MapLocationPageRoutingModule,
   ],
-  declarations: [SplashScreenPage]
+  declarations: [MapLocationPage]
 })
-export class SplashScreenPageModule {}
+export class MapLocationPageModule {}

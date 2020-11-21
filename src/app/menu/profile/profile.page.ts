@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {AuthService} from '../../service/auth.service';
-import {LoadingController} from '@ionic/angular';
+import {AlertController, LoadingController} from '@ionic/angular';
 
 @Component({
   selector: 'app-profile',
@@ -14,6 +14,7 @@ export class ProfilePage implements OnInit {
   constructor(
       private authService: AuthService,
       private loadingController: LoadingController,
+      private alertController: AlertController,
       ) { }
 
   async ngOnInit() {
@@ -31,4 +32,33 @@ export class ProfilePage implements OnInit {
   }
 
 
+  async topupAlert() {
+    const alert = await this.alertController.create({
+      cssClass: 'my-custom-class',
+      message: 'Silahkan memilih jumlah topup yang diinginkan.',
+      buttons: [
+        {
+          text: '10.000',
+          handler: () => {
+            const totalAmount = this.userProfile.balance + 10000;
+            this.authService.topupBalance(totalAmount);
+          }
+        }, {
+          text: '50.000',
+          handler: () => {
+            const totalAmount = this.userProfile.balance + 50000;
+            this.authService.topupBalance(totalAmount);
+          }
+        }, {
+          text: '100.000',
+          handler: () => {
+            const totalAmount = this.userProfile.balance + 100000;
+            this.authService.topupBalance(totalAmount);
+          }
+        }
+      ]
+    });
+
+    await alert.present();
+  }
 }

@@ -9,6 +9,10 @@ const routes: Routes = [
     component: ExplorePage
   },
   {
+    path: 'explore-detail/map-location',
+    loadChildren: () => import('./explore-detail/map-location/map-location.module').then( m => m.MapLocationPageModule)
+  },
+  {
     path: 'explore-detail/:id',
     loadChildren: () => import('./explore-detail/explore-detail.module').then(m => m.ExploreDetailPageModule)
   },

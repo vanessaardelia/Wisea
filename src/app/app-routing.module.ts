@@ -12,11 +12,6 @@ const routes: Routes = [
     redirectTo: 'login',
     pathMatch: 'full'
   },
-  // {
-  //   path: 'home',
-  //   loadChildren: () => import('./home/home.module').then( m => m.HomePageModule),
-  //   ...canActivate(redirectUnauthorizedToLogin)
-  // },
   {
     path: 'recommendation1',
     loadChildren: () => import('./recommend/recommendation1/recommendation1.module').then( m => m.Recommendation1PageModule)

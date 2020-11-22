@@ -62,15 +62,16 @@ const routes: Routes = [
     loadChildren: () => import('./history/history.module').then( m => m.HistoryPageModule)
   },
   {
-    path: 'history',
-    loadChildren: () => import('./history/history.module').then( m => m.HistoryPageModule)
-  },
-  {
     path: 'shopping-cart/:id',
     loadChildren: () => import('./shopping-cart/shopping-cart.module').then( m => m.ShoppingCartPageModule)
-  },  {
-    path: 'history-detail',
-    loadChildren: () => import('./history-detail/history-detail.module').then( m => m.HistoryDetailPageModule)
+  },
+  {
+    path: 'history-detail/:id',
+    loadChildren: () => import('./history/history-detail/history-detail-routing.module').then( m => m.HistoryDetailPageRoutingModule)
+  },
+  {
+    path: 'payment-summary/:id',
+    loadChildren: () => import('./menu/explore/shopping-cart/payment-summary/payment-summary-routing.module').then( m => m.PaymentSummaryPageRoutingModule)
   }
 
 ];

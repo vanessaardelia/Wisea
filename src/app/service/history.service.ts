@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -7,12 +8,15 @@ import { AngularFirestore } from '@angular/fire/firestore';
 export class HistoryService {
 
   constructor(
-    private firestore: AngularFirestore
+    private firestore: AngularFirestore,
+    private router: Router
   ) { }
 
   addHistory(jumlah: number, nama: string, tanggal: Date, tiket: string, total: number, email: string, tlp: string, open: boolean){ 
     const id = this.firestore.createId();
     const status = 'terbayar'
+
+    this.router.navigate([`/payment-summary/${id}`]);
 
     return this.firestore.doc(`history/${id}`).set({
       jumlah,
@@ -23,7 +27,12 @@ export class HistoryService {
       total,
       email,
       tlp,
-      open
+      open,
+      id
     });
+  }
+
+  getHistoryDetail(id) {
+    return this.firestore.collection('history').doc<History>(id).valueChanges();
   }
 }

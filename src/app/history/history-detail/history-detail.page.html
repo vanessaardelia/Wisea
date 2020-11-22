@@ -1,0 +1,16 @@
+<ion-header [translucent]="true">
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start" routerLink="/history">
+      <ion-icon class="header__icon" src='assets/icon/backButton.svg'></ion-icon>
+    </ion-buttons>
+    <ion-title class="ion-text-center">
+        Wisea
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-item-group>
+      {{ (detail | async)?.nama }}
+  </ion-item-group>
+</ion-content>

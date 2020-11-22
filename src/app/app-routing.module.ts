@@ -62,17 +62,17 @@ const routes: Routes = [
     loadChildren: () => import('./history/history.module').then( m => m.HistoryPageModule)
   },
   {
+    path: 'history',
+    loadChildren: () => import('./history/history.module').then( m => m.HistoryPageModule)
+  },
+  {
     path: 'shopping-cart/:id',
     loadChildren: () => import('./shopping-cart/shopping-cart.module').then( m => m.ShoppingCartPageModule)
-  },
-  {
-    path: 'payment-summary/:id',
-    loadChildren: () => import('./shopping-cart/payment-summary/payment-summary.module').then( m => m.PaymentSummaryPageModule)
-  },
-  {
-    path: 'history-detail/:id',
-    loadChildren: () => import('./history/history-detail/history-detail.module').then( m => m.HistoryDetailPageModule)
+  },  {
+    path: 'history-detail',
+    loadChildren: () => import('./history-detail/history-detail.module').then( m => m.HistoryDetailPageModule)
   }
+
 ];
 
 @NgModule({

@@ -8,5 +8,4 @@ export default class History {
   email: string;
   tlp: string;
   open: Boolean;
-  id: string;
 }

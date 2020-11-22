@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { HistoryService } from 'src/app/service/history.service';
 import History from '../model/history';
+import { Observable } from 'rxjs';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { AuthService } from '../service/auth.service';
 
@@ -11,7 +13,6 @@ import { AuthService } from '../service/auth.service';
 export class HistoryPage implements OnInit {
   public histories: any;
   userProfile: any;
-  historyCount: number;
 
   ngOnInit() {
   }
@@ -21,6 +22,7 @@ export class HistoryPage implements OnInit {
   }
 
   constructor(
+      private historyService: HistoryService,
       private authService: AuthService,
       private firestore: AngularFirestore
   ) { }
@@ -34,15 +36,9 @@ export class HistoryPage implements OnInit {
           this.histories = results
         }
         else {
-          this.historyCount = 0
+          return 
         }
       });
-    });
-  }
-
-  goToHistoryDetail(historyId) {
-    this.firestore.collection('history').doc<History>(historyId).update({
-      open: true
     });
   }
 

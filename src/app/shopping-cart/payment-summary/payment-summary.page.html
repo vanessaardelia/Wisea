@@ -1,0 +1,21 @@
+<ion-header [translucent]="true">
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start" [routerLink]="['/menu/tabs/explore/explore-detail/', (wisataList | async)?.id]">
+      <ion-icon class="header__icon" src='assets/icon/backButton.svg'></ion-icon>
+    </ion-buttons>
+    <ion-title class="ion-text-center">
+      Wisea
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-item-group>
+    <ion-img src="assets/icon/payment.svg"></ion-img>
+    <ion-title>
+      <strong>Yah masih kosong :(</strong>
+      <p>ayo belanja</p>
+    </ion-title>
+    <ion-button expand="full" fill="clear" (click)="goToSummary()">Outline + Full</ion-button>
+  </ion-item-group>
+</ion-content>

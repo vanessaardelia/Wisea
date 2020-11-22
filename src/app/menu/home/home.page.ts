@@ -15,10 +15,17 @@ export class HomePage {
     private authService: AuthService
   ) {}
 
+  ngOnInit() {
+  }
+
   ionViewWillEnter() {
+    this.getCountHistory();
+  }
+
+  getCountHistory() {
     this.authService.getUserData().subscribe(res => {
       this.userProfile = res;
-      this.firestore.collection<History>('history').ref.where('nama', '==', this.userProfile.name).get().then((ref) => {
+      this.firestore.collection<History>('history').ref.where('nama', '==', this.userProfile.name).where('open', '==', false).get().then((ref) => {
         let results = ref.docs.map(doc => doc.data());
         if (results.length > 0) {
           this.historyCount = results.length.toString()

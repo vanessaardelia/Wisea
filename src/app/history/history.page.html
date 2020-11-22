@@ -10,8 +10,8 @@
 </ion-header>
 
 <ion-content [fullscreen]="true" color="background">
-  <ion-item-group class="body__container">
-    <ion-card *ngFor="let history of histories">
+  <ion-item-group class="body__container" *ngFor="let history of histories">
+    <ion-card (click)="goToHistoryDetail(history.id)" [routerLink]="['./history-detail', history.id]">
       <ion-card-header>
         <ion-card-subtitle style="font-size: 12px;">
           <ion-item-group class="history__desc">
@@ -45,5 +45,12 @@
         </ion-row>
       </ion-card-content>
     </ion-card>
+  </ion-item-group>
+  <ion-item-group *ngIf="historyCount === 0">
+    <ion-img src="assets/login/lupa-password.svg"></ion-img>
+    <ion-title>
+      <strong>Yah masih kosong :(</strong>
+      <p>ayo belanja</p>
+    </ion-title>
   </ion-item-group>
 </ion-content>

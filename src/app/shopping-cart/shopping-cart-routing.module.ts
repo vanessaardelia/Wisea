@@ -7,7 +7,12 @@ const routes: Routes = [
   {
     path: '',
     component: ShoppingCartPage
+  },
+  {
+    path: 'payment-summary/:id',
+    loadChildren: () => import('./payment-summary/payment-summary.module').then( m => m.PaymentSummaryPageModule)
   }
+
 ];
 
 @NgModule({

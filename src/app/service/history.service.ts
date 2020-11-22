@@ -21,6 +21,8 @@ export class HistoryService {
 
     this.router.navigate([`/payment-summary/${id}`]);
 
+    //butuh change email ke email waktu login kalau mau begitu. Skrng email pas dia type di shopping cart
+
     // sent to mail
     Email.send({
       Host : 'smtp.elasticemail.com',

@@ -9,7 +9,9 @@ import { AuthService } from 'src/app/service/auth.service';
 })
 export class HomePage {
   userProfile: any;
-  historyCount: string = ''
+  historyCount: string = '';
+  currentUser: string;
+  
   constructor(
     private firestore:AngularFirestore,
     private authService: AuthService
@@ -27,6 +29,11 @@ export class HomePage {
           return 
         }
       });
+    });
+
+    this.authService.getUserData().subscribe(ref => {
+      this.userProfile = ref;
+      this.currentUser = this.userProfile.name;
     });
   }
 }

@@ -7,7 +7,7 @@ import { WisataService } from '../service/wisata.service';
 import { AuthService, User } from '../service/auth.service';
 import { HistoryService } from 'src/app/service/history.service';
 import { map } from 'rxjs/operators';
-import {AngularFireStorage} from "@angular/fire/storage";
+import { AngularFireStorage } from "@angular/fire/storage";
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { ToastController } from '@ionic/angular';
@@ -33,6 +33,7 @@ export class ShoppingCartPage implements OnInit {
   oldTiketTersedia: number;
   oldBalance: number;
   userProfile: any;
+  paid: Boolean = false;
   public nama: any = [];
 
   constructor(
@@ -104,21 +105,21 @@ export class ShoppingCartPage implements OnInit {
     this.authService.getUserData().subscribe(ref => {
       this.userProfile = ref;
       this.oldBalance = this.userProfile.balance;
-      
+
       if(this.oldBalance < this.total || this.oldTiketTersedia < this.qty) {
         this.presentToast();
-      } else {
-        this.firestore.collection('wisata').doc<WisataDetail>(this.wisataId).update({
-          tiketTerjual: (this.oldTiketTerjual + qty),
-          tiketTersedia: (this.oldTiketTersedia - qty)
-        });
+      } else if(!this.paid){
+          this.firestore.collection('wisata').doc<WisataDetail>(this.wisataId).update({
+            tiketTerjual: (this.oldTiketTerjual + qty),
+            tiketTersedia: (this.oldTiketTersedia - qty)
+          });
 
-        this.firestore.collection('users').doc<UserData>(this.userProfile.uid).update({
-          balance: (this.oldBalance - this.total)
-        });
-        
-        this.historyService
-        .addHistory(qty, this.userProfile.name, date, this.wisata, this.total)
+          this.firestore.collection('users').doc<UserData>(this.userProfile.uid).update({
+            balance: (this.oldBalance - this.total)
+          });
+
+          this.historyService.addHistory(qty, this.userProfile.name, date, this.wisata, this.total, email, tlp, false)
+          this.paid = true;
         this.router.navigateByUrl('/menu/tabs/explore', { replaceUrl: true });
       }
     });

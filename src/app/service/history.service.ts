@@ -1,8 +1,5 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
-import History from '../model/history';
-import {Observable} from 'rxjs';
-import { AuthService } from './auth.service';
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +10,7 @@ export class HistoryService {
     private firestore: AngularFirestore
   ) { }
 
-  addHistory(jumlah: number, nama: string, tanggal: Date, tiket: string, total: number){ 
+  addHistory(jumlah: number, nama: string, tanggal: Date, tiket: string, total: number, email: string, tlp: string, open: boolean){ 
     const id = this.firestore.createId();
     const status = 'terbayar'
 
@@ -23,7 +20,10 @@ export class HistoryService {
       status,
       tanggal,
       tiket,
-      total
+      total,
+      email,
+      tlp,
+      open
     });
   }
 }

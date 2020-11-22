@@ -68,7 +68,11 @@ const routes: Routes = [
   {
     path: 'shopping-cart/:id',
     loadChildren: () => import('./shopping-cart/shopping-cart.module').then( m => m.ShoppingCartPageModule)
+  },  {
+    path: 'history-detail',
+    loadChildren: () => import('./history-detail/history-detail.module').then( m => m.HistoryDetailPageModule)
   }
+
 ];
 
 @NgModule({

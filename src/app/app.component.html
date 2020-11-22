@@ -13,17 +13,20 @@
       <ion-list class="menu-items" lines="none">
         <ion-menu-toggle menu="main-menu">
           <ion-item routerLink="/menu/tabs/profile/edit-profile" color="secondary">
-            <ion-icon name="home-outline"></ion-icon>Edit Profile
+            <ion-icon name="home-outline"></ion-icon>
+            <ion-label>Edit Profile</ion-label>
           </ion-item>
         </ion-menu-toggle>
         <ion-menu-toggle menu="main-menu">
           <ion-item color="secondary">
-            <ion-icon name="information-circle-outline"></ion-icon>About App
+            <ion-icon name="information-circle-outline"></ion-icon>
+            <ion-label>About App</ion-label>
           </ion-item>
         </ion-menu-toggle>
         <ion-menu-toggle menu="main-menu">
           <ion-item color="secondary" (click)="logoutAlert()">
-            <ion-icon name="log-out-outline"></ion-icon>Log out
+            <ion-icon name="log-out-outline"></ion-icon>
+            <ion-label>Log out</ion-label>
           </ion-item>
         </ion-menu-toggle>
       </ion-list>

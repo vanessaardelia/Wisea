@@ -12,11 +12,6 @@ const routes: Routes = [
     redirectTo: 'on-boarding-screen',
     pathMatch: 'full'
   },
-  // {
-  //   path: 'home',
-  //   loadChildren: () => import('./home/home.module').then( m => m.HomePageModule),
-  //   ...canActivate(redirectUnauthorizedToLogin)
-  // },
   {
     path: 'recommendation1',
     loadChildren: () => import('./recommend/recommendation1/recommendation1.module').then( m => m.Recommendation1PageModule)
@@ -69,7 +64,16 @@ const routes: Routes = [
   {
     path: 'shopping-cart/:id',
     loadChildren: () => import('./shopping-cart/shopping-cart.module').then( m => m.ShoppingCartPageModule)
+  },
+  {
+    path: 'history-detail/:id',
+    loadChildren: () => import('./history/history-detail/history-detail-routing.module').then( m => m.HistoryDetailPageRoutingModule)
+  },
+  {
+    path: 'payment-summary/:id',
+    loadChildren: () => import('./menu/explore/shopping-cart/payment-summary/payment-summary-routing.module').then( m => m.PaymentSummaryPageRoutingModule)
   }
+
 ];
 
 @NgModule({

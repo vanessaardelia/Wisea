@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Observable } from 'rxjs';
-import { WisataDetail } from '../model/wisata-detail.interface';
-import { UserData } from '../model/user.model';
-import { WisataService } from '../service/wisata.service';
-import { AuthService } from '../service/auth.service';
+import { WisataDetail } from '../../../model/wisata-detail.interface';
+import { UserData } from '../../../model/user.model';
+import { WisataService } from '../../../service/wisata.service';
+import { AuthService, User } from '../../../service/auth.service';
 import { HistoryService } from 'src/app/service/history.service';
 import { map } from 'rxjs/operators';
 import { AngularFireStorage } from "@angular/fire/storage";
@@ -43,7 +43,6 @@ export class ShoppingCartPage implements OnInit {
     formBuilder: FormBuilder,
     private authService: AuthService,
     private historyService: HistoryService,
-    private router: Router,
     private firestore: AngularFirestore,
     private toastController: ToastController,
   ) {
@@ -120,7 +119,6 @@ export class ShoppingCartPage implements OnInit {
 
           this.historyService.addHistory(qty, this.userProfile.name, date, this.wisata, this.total, email, tlp, false)
           this.paid = true;
-        this.router.navigateByUrl('/menu/tabs/explore', { replaceUrl: true });
       }
     });
   }

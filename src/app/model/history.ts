@@ -5,4 +5,7 @@ export default class History {
   tanggal: Date;
   tiket: string;
   total: number;
+  email: string;
+  tlp: string;
+  open: Boolean;
 }

@@ -24,7 +24,7 @@ export class Recommendation4Page implements OnInit {
   maps(event, location){
     console.log(location);
     this.storage.set('location', location);
-    this.router.navigate(['recommendation-result'])
+    this.router.navigate(['/recommendation-result'])
   }
   
   async presentToast() {

@@ -1,0 +1,23 @@
+<ion-header [translucent]="true">
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start" routerLink="/menu/tabs/explore">
+      <ion-icon class="header__icon" src='assets/icon/backButton.svg'></ion-icon>
+    </ion-buttons>
+    <ion-title class="ion-text-center">
+        Wisea
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-item-group>
+    <ion-item-group>
+      <ion-img src="assets/icon/payment.svg"></ion-img>
+      <ion-title>
+        <strong>Reset Password</strong>
+        <p>Kami tidak bisa reset pata hati kamu,<br> kalau sekedar reset password tentu bisa!</p>
+      </ion-title>
+    </ion-item-group>
+    <ion-button shape="round" fill="outline" (click)="goToHistoryDetail()">Payment detail</ion-button>
+  </ion-item-group>
+</ion-content>

@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import {AngularFirestore} from '@angular/fire/firestore';
+import { AuthService } from 'src/app/service/auth.service';
 
 @Component({
   selector: 'app-home',
@@ -7,13 +8,32 @@ import {AngularFirestore} from '@angular/fire/firestore';
   styleUrls: ['home.page.scss'],
 })
 export class HomePage {
-  // cartCollection: AngularFirestore<History>; //Firestore collection
-  historyCount: string = ''
-  constructor(private firestore:AngularFirestore) {}
+  userProfile: any;
+  historyCount: string = '';
+  currentUser: string;
+  
+  constructor(
+    private firestore:AngularFirestore,
+    private authService: AuthService
+  ) {}
 
   ionViewWillEnter() {
-    this.firestore.collection('history').valueChanges().subscribe( values => {
-      this.historyCount = values.length.toString()
+    this.authService.getUserData().subscribe(res => {
+      this.userProfile = res;
+      this.firestore.collection<History>('history').ref.where('nama', '==', this.userProfile.name).where('open', '==', false).get().then((ref) => {
+        let results = ref.docs.map(doc => doc.data());
+        if (results.length > 0) {
+          this.historyCount = results.length.toString()
+        }
+        else {
+          return 
+        }
+      });
+    });
+
+    this.authService.getUserData().subscribe(ref => {
+      this.userProfile = ref;
+      this.currentUser = this.userProfile.name;
     });
   }
 }

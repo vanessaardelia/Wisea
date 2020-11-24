@@ -2,8 +2,8 @@
     position: absolute;
     left: 0%;
     right: 0%;
-    top: 50%;
-    margin-top: 80px;
+    top: 40%;
+    margin: 60px 0px 30px;
     transform: translateY(-50%);
     color: var(--ion-color-primary);
 }
@@ -70,10 +70,10 @@
 }
 
 .header {
-  &__icon{
-    font-size: 24px;
-    z-index: -1;
-  }
+    &__icon {
+        font-size: 24px;
+        z-index: -1;
+    }
 }
 
 .notifications {

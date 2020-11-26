@@ -2,19 +2,16 @@
   position: absolute;
   left: 5%;
   right: 5%;
-  top: 50%;
-  transform: translateY(-50%);
+  top: 5%;
   color: var(--ion-color-secondary-contrast);
 }
 
 #container ion-item {
   margin-top: 30px;
-  text-align: center;
-  z-index: -1;
 }
 
 #container ion-label {
-  font-size: 22px;
+  font-size: 16px;
   text-align: center;
 }
 
@@ -52,5 +49,5 @@
 .proflePic {
   height: 200px;
   width: 200px;
-  margin: 0 auto;
+  margin: 30px auto 0px auto;
 }

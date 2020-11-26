@@ -24,4 +24,8 @@ export class PaymentSummaryPage implements OnInit {
     this.router.navigate([`/history-detail/${this.paymentId}`]);
   }
 
+  goToExplore() {
+    this.router.navigate([`/menu/tabs/explore`]);
+  }
+
 }

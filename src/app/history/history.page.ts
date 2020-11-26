@@ -30,7 +30,7 @@ export class HistoryPage implements OnInit {
   getHistory() {
     this.authService.getUserData().subscribe(res => {
       this.userProfile = res;
-      this.firestore.collection<History>('history').ref.where('nama', '==', this.userProfile.name).get().then((ref) => {
+      this.firestore.collection<History>('history').ref.where('email', '==', this.userProfile.email).get().then((ref) => {
         let results = ref.docs.map(doc => doc.data());
         if (results.length > 0) {
           this.histories = results

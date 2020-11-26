@@ -48,11 +48,11 @@
       </ion-card>
     </ion-item-group>
   </ng-template>
-  <ion-item-group *ngIf="historyCount === 0; else hasValue">
-    <ion-img src="assets/login/lupa-password.svg"></ion-img>
+  <ion-item-group class="history__noresult" *ngIf="historyCount === 0; else hasValue">
+    <ion-img class="history__noresult-img" src="assets/login/lupa-password.svg"></ion-img>
     <ion-title>
-      <strong>Yahh, kosong :(</strong>
-      <p>Seperti hatimu,<br> jangan biarkan pesananmu kosong</p>
+      <div class="history__noresult-title"><strong>Yahh, kosong :(</strong></div>
+      <p class="history__noresult-subtitle">Seperti hatimu,<br> jangan biarkan pesananmu kosong</p>
     </ion-title>
   </ion-item-group>
 </ion-content>

@@ -47,7 +47,7 @@ export class ShoppingCartPage implements OnInit {
     private toastController: ToastController,
   ) {
     this.shopForm = formBuilder.group({
-      email: ['', Validators.required],
+      nik: ['', Validators.required],
       tlp: ['', Validators.required],
       qty: ['', Validators.required]
     });
@@ -97,29 +97,33 @@ export class ShoppingCartPage implements OnInit {
 
   shopping() {
     const qty = this.shopForm.value.qty;
-    const email = this.shopForm.value.email;
+    const nik = this.shopForm.value.nik;
     const tlp = this.shopForm.value.tlp;
     const date = new Date();
 
     this.authService.getUserData().subscribe(ref => {
       this.userProfile = ref;
       this.oldBalance = this.userProfile.balance;
+      const email = this.userProfile.email;
 
-      if(this.oldBalance < this.total || this.oldTiketTersedia < this.qty) {
-        this.presentToast();
-      } else if(!this.paid){
-          this.firestore.collection('wisata').doc<WisataDetail>(this.wisataId).update({
-            tiketTerjual: (this.oldTiketTerjual + qty),
-            tiketTersedia: (this.oldTiketTersedia - qty)
-          });
+      console.log(this.paid)
+      if(this.paid === false){
+        if(this.oldBalance < this.total || this.oldTiketTersedia < this.qty) {
+          this.presentToast();
+        } else if(!this.paid){
+            this.firestore.collection('wisata').doc<WisataDetail>(this.wisataId).update({
+              tiketTerjual: (this.oldTiketTerjual + qty),
+              tiketTersedia: (this.oldTiketTersedia - qty)
+            });
 
-          this.firestore.collection('users').doc<UserData>(this.userProfile.uid).update({
-            balance: (this.oldBalance - this.total)
-          });
+            this.firestore.collection('users').doc<UserData>(this.userProfile.uid).update({
+              balance: (this.oldBalance - this.total)
+            });
 
-          this.historyService.addHistory(qty, this.userProfile.name, date, this.wisata, this.total, email, tlp, false)
-          this.paid = true;
-      }
+            this.historyService.addHistory(qty, this.userProfile.name, date, this.wisata, this.total, email, tlp, false, nik)
+            this.paid = true;
+        }
+    }
     });
   }
 

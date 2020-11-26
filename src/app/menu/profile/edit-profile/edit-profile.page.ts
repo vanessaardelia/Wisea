@@ -13,6 +13,7 @@ export class EditProfilePage implements OnInit {
   form: FormGroup;
   userProfile: any;
   currentPhoto: any;
+  passwordHide = true;
 
   constructor(
       private authService: AuthService,

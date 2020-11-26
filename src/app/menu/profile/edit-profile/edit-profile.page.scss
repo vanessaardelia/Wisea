@@ -3,29 +3,44 @@ ion-icon {
   margin-left: 5px;
 }
 
+ion-title {
+  margin-left: -15%;
+}
+
 #container {
   position: absolute;
   left: 5%;
   right: 5%;
-  top: 50%;
-  transform: translateY(-50%);
+  top: 5%;
   color: var(--ion-color-secondary-contrast);
 
-  .edit-form {
-    margin-top: 30px;
+  ion-button {
+    margin-bottom: 80px;
+    font-weight: 700;
+  }
+
+  ion-item ion-button {
+    position: absolute;
+    left: 53%;
+    top: 65%;
+    z-index: 1;
+    float: right;
+  }
+
+  .btnImage{
+    width: 60px;
+    height: 60px;
+    --border-radius: 50%;
+  }
+
+  ion-icon {
+    font-size: 70px;
+    display: block;
   }
 }
 
 #container ion-item {
-  margin-top: 30px;
-  text-align: center;
-  z-index: -1;
-}
-
-#container ion-img {
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
+  margin: 50px 0px;
 }
 
 .proflePic {
@@ -34,27 +49,32 @@ ion-icon {
   margin: 0 auto;
 }
 
+.mat-icon {
+  color: #946E41;
+}
+
 mat-form-field {
   width: 100%;
 }
 
-::ng-deep .mat-form-field-label {
+mat-label {
   /*change color of label*/
   color: #946E41 !important;
+  font-weight: 500;
 }
 
-::ng-deep .mat-focused .mat-form-field-label {
-  /*change color of label when focused*/
-  color: #946E41 !important;
-  font-weight: bold;
-}
+::ng-deep {
+  .mat-form-field-underline {
+    /*change color of underline*/
+    background-color: #946E41 !important;
+  }
 
-::ng-deep.mat-form-field-underline {
-  /*change color of underline*/
-  background-color: #946E41 !important;
-}
+  .mat-form-field-ripple {
+    /*change color of underline when focused*/
+    background-color: #946E41 !important;
+  }
 
-::ng-deep.mat-form-field-ripple {
-  /*change color of underline when focused*/
-  background-color: #946E41 !important;;
+  .mat-form-field-wrapper{
+    margin-bottom: 20px;
+  }
 }

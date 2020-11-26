@@ -36,7 +36,9 @@ export class RecommendationResultPage implements OnInit {
     private fireStorage: AngularFireStorage
   ) {}
 
-  ngOnInit() {   
+  ngOnInit() {  
+    this.recommendResult = [];
+    this.message = null; 
   }
 
   ionViewWillEnter(){
@@ -140,6 +142,8 @@ export class RecommendationResultPage implements OnInit {
         })
       );
 
+      console.log(this.message);
+      
       // this.wisataList = this.wisataService.getWisata();
       
     });

@@ -47,7 +47,7 @@
                             </ion-card-content>
                         </ion-card>
                     </ion-item-group>
-                    <ion-label color="medium" class="ion-text-wrap ion-text-center">
+                    <ion-label *ngIf='!message' color="medium" class="ion-text-wrap ion-text-center">
                         Ops, maaf belum ada rekomendasi untuk Anda :(
                     </ion-label>
                 </ion-col>

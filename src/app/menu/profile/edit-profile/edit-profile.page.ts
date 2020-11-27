@@ -1,8 +1,12 @@
-import { Component, OnInit } from '@angular/core';
-import {FormGroup, FormControl, Validators} from '@angular/forms';
+import {Component, OnInit} from '@angular/core';
+import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {AuthService} from '../../../service/auth.service';
 import {AlertController, LoadingController} from '@ionic/angular';
 import {Router} from '@angular/router';
+import {CameraResultType, Plugins} from '@capacitor/core';
+import {decode} from 'base64-arraybuffer';
+
+const { Camera } = Plugins;
 
 @Component({
   selector: 'app-edit-profile',
@@ -12,8 +16,12 @@ import {Router} from '@angular/router';
 export class EditProfilePage implements OnInit {
   form: FormGroup;
   userProfile: any;
-  currentPhoto: any;
   passwordHide = true;
+  photo: any = {
+    userPhoto: '',
+    oldPhoto: '',
+    base64Photo: '',
+  };
 
   constructor(
       private authService: AuthService,
@@ -31,8 +39,10 @@ export class EditProfilePage implements OnInit {
         loading.dismiss();
 
         this.userProfile = ref;
-        this.currentPhoto = ref.photo;
         this.userProfile.photo = res;
+        this.photo.userPhoto = res;
+        this.photo.oldPhoto = res;
+        this.photo.base64Photo = res;
       });
     });
 
@@ -64,12 +74,32 @@ export class EditProfilePage implements OnInit {
     });
   }
 
+  async takePicture() {
+    try {
+      const profilePicture = await Camera.getPhoto({
+        quality: 100,
+        allowEditing: false,
+        resultType: CameraResultType.Base64,
+      });
+      this.photo.base64Photo = profilePicture.base64String;
+      this.photo.userPhoto = 'data:image/png;base64,' + this.photo.base64Photo;
+    } catch (error) {
+      const alert = await this.alertController.create({
+        header: 'Pengambilan gambar gagal',
+        message: error.message,
+        buttons: ['OK'],
+      });
+
+      await alert.present();
+    }
+  }
+
   async edit(confirmPassword) {
     const loading = await this.loadingController.create();
     await loading.present();
-    this.form.value.photo = this.currentPhoto;
+    this.form.value.photo = this.photo.userPhoto;
 
-    await this.authService.editUserData(this.form.value, confirmPassword).then(() => {
+    await this.authService.editUserData(this.form.value, confirmPassword, this.photo).then(() => {
       loading.dismiss();
       this.router.navigateByUrl('/menu/tabs/profile', { replaceUrl: true });
     }, async err => {

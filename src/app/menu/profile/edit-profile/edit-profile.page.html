@@ -13,9 +13,9 @@
   <ion-item-group id="container">
     <ion-item lines='none'>
       <ion-avatar class="proflePic">
-        <ion-img src="{{ userProfile?.photo }}"></ion-img>
+        <ion-img src="{{ photo.userPhoto }}"></ion-img>
       </ion-avatar>
-      <ion-button class="btnImage"><ion-icon name="camera"></ion-icon></ion-button>
+      <ion-button class="btnImage" (click)="takePicture()"><ion-icon name="camera"></ion-icon></ion-button>
     </ion-item>
     <form class="edit-form" [formGroup]="form">
       <mat-label>Nama Lengkap</mat-label>

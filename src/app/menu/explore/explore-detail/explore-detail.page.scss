@@ -16,3 +16,9 @@
   transition: 0.5s linear all;
   opacity: 1;
 }
+
+.header {
+  &__icon{
+    font-size: 24px;
+  }
+}

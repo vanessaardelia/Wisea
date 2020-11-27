@@ -106,7 +106,6 @@ export class ShoppingCartPage implements OnInit {
       this.oldBalance = this.userProfile.balance;
       const email = this.userProfile.email;
 
-      console.log(this.paid)
       if(this.paid === false){
         if(this.oldBalance < this.total || this.oldTiketTersedia < this.qty) {
           this.presentToast();

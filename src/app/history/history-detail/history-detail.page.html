@@ -16,29 +16,57 @@
         <ion-card-header>
           <ion-card-subtitle style="font-size: 12px;">
             <ion-item-group class="history__desc">
-              {{ (detail | async )?.nama }}
+              {{ (detail | async)?.tanggal.toMillis() | date:'EEEE, MM-dd-yyyy h:mm a' }}
               <ion-chip color="success">
-                <ion-label></ion-label>
+                <ion-label>{{ (detail | async)?.status }}</ion-label>
               </ion-chip>
             </ion-item-group>
           </ion-card-subtitle>
-          <ion-card-title style="color: var(--ion-color-primary); font-size: 18px;"><strong></strong></ion-card-title>
+          <ion-card-title style="color: var(--ion-color-primary); font-size: 18px;"><strong>Tiket: {{ (detail | async)?.tiket }}</strong></ion-card-title>
         </ion-card-header>
         <ion-card-content>
-          <ion-row class="history__desc">
-            <ion-item-group>
-              <ion-row class="history__total">
-                <ion-icon name="bag-handle-outline" class="history__total-icon"></ion-icon>
-                <p>Jumlah: </p>
-              </ion-row>
-            </ion-item-group>
-            <ion-item-group>
-              <ion-row class="history__total">
-                <ion-icon name="cash-outline" class="history__total-icon"></ion-icon>
-                <p>Total: </p>
-              </ion-row>
-            </ion-item-group>
-          </ion-row>
+          <div id="mid">
+            <div class="info">
+              <p style="font-size: 12px;">
+                <strong>Email   : </strong>{{ (detail | async)?.email }}<br>
+                <strong>Phone   : </strong>0{{ (detail | async)?.tlp }}<br>
+              </p>
+            </div>
+          </div>
+          <br>
+          <div>
+            <div>
+              <table>
+                <tr style="background: #EEE; color: var(--ion-color-primary); font-size: 14px;">
+                  <td><strong>Item</strong></td>
+                  <td></td>
+                  <td></td>
+                  <td><strong>Qty</strong></td>
+                  <td></td>
+                  <td><strong>Sub Total</strong></td>
+                </tr>
+  
+                <tr>
+                  <td><p>{{ (detail | async)?.tiket }}</p></td>
+                  <td></td>
+                  <td></td>
+                  <td><p>{{ (detail | async)?.jumlah }}</p></td>
+                  <td></td>
+                  <td><p>{{ (detail | async)?.total | currency:'IDR':'symbol-narrow':'3.0'}}</p></td>
+                </tr>
+                <tr>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td style="color: var(--ion-color-primary); font-size: 14px;"><strong>Total</strong></td>
+                  <td></td>
+                  <td>{{ (detail | async)?.total | currency:'IDR':'symbol-narrow':'3.0'}}</td>
+                </tr>
+              </table>
+              <br>
+              <p style="text-align: center;"><strong>Thank you for your purchase!</strong><br>Happy #ngeBolang !</p>
+            </div>
+          </div>
         </ion-card-content>
       </ion-card>
     </ion-item-group>

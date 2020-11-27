@@ -15,7 +15,7 @@
       <ion-card>
         <ion-card-header>
           <ion-card-subtitle style="font-size: 12px;">
-            <ion-item-group class="history__desc">
+            <ion-item-group class="history__desc" style="display: flex; justify-content: space-between; align-items: center;">
               {{ (detail | async)?.tanggal.toMillis() | date:'EEEE, MM-dd-yyyy h:mm a' }}
               <ion-chip color="success">
                 <ion-label>{{ (detail | async)?.status }}</ion-label>

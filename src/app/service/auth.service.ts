@@ -4,6 +4,7 @@ import {AngularFirestore} from '@angular/fire/firestore';
 import {AngularFireStorage} from '@angular/fire/storage';
 import {Observable} from 'rxjs';
 import firebase from 'firebase';
+import {CameraPhoto} from "@capacitor/core";
 
 export interface User {
   uid: string;
@@ -56,10 +57,14 @@ export class AuthService {
     return await this.userAuth.confirmPasswordReset(code, password);
   }
 
-  async editUserData(userData, password) {
+  async editUserData(userData, password, photo) {
     const user = firebase.auth().currentUser;
     const credential = firebase.auth.EmailAuthProvider.credential(user.email, password);
 
+    if (userData.photo !== photo.oldPhoto) {
+      await this.uploadPhoto(photo.base64Photo, userData.email);
+      userData.photo = userData.email + '.png';
+    }
     await user.reauthenticateWithCredential(credential).then(res => {
       this.userStore.doc(`users/${this.currentUser.uid}`).update({
         email: userData.email,
@@ -77,6 +82,14 @@ export class AuthService {
         console.log('new Password: ', userData.newPassword);
         user.updatePassword(userData.newPassword);
       }
+    });
+  }
+
+  async uploadPhoto(imageString, email) {
+    const storageRef = firebase.storage().ref(`users/${email}.png`);
+
+    const uploadedPicture = await storageRef.putString(imageString, 'base64', {
+      contentType: 'image/png'
     });
   }
 

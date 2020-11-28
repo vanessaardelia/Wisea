@@ -65,6 +65,9 @@
       </mat-form-field>
     </form>
     <ion-button (click)="register()" expand="full" color="primary" shape="round" [disabled]="!credentialForm.valid">Daftar</ion-button>
-    <ion-button routerLink="/login" expand="full" color="tertiary" shape="round">Kembali</ion-button>
+    <p style="text-align: center">
+      Sudah memiliki akun? Login
+      <span routerLink="/login" class="login">disini</span>
+    </p>
   </ion-item-group>
 </ion-content>

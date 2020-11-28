@@ -1,34 +1,53 @@
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 
 import {AlertController, LoadingController, Platform} from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 import {Router} from '@angular/router';
-import {AuthService} from "./service/auth.service";
+import {AuthService} from './service/auth.service';
 
 @Component({
   selector: 'app-root',
   templateUrl: 'app.component.html',
   styleUrls: ['app.component.scss']
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
+  userProfile: any;
+
   constructor(
     private platform: Platform,
     private splashScreen: SplashScreen,
     private statusBar: StatusBar,
     private router: Router,
-    private userAuth: AuthService,
+    private authService: AuthService,
     private loadingController: LoadingController,
     private alertController: AlertController,
   ) {
     this.initializeApp();
   }
 
-  initializeApp() {
+  async initializeApp() {
+    console.log('init');
     this.platform.ready().then(() => {
       this.statusBar.styleDefault();
       this.splashScreen.hide();
       this.menuRadius();
+    });
+
+    console.log('create loading');
+    const loading = await this.loadingController.create();
+    console.log('show loading');
+    await loading.present();
+
+    console.log('get user');
+    this.authService.getUserData().subscribe(ref => {
+      console.log('get user photo url');
+      this.authService.getUserPhotoUrl(ref.photo).subscribe(res => {
+        loading.dismiss();
+
+        this.userProfile = ref;
+        this.userProfile.photo = res;
+      });
     });
   }
 
@@ -42,7 +61,7 @@ export class AppComponent {
     const loading = await this.loadingController.create();
     await loading.present();
 
-    await this.userAuth.logout().then(() => {
+    await this.authService.logout().then(() => {
       loading.dismiss();
     });
     return this.router.navigateByUrl('/', { replaceUrl: true });
@@ -72,5 +91,8 @@ export class AppComponent {
     });
 
     await alert.present();
+  }
+
+  async ngOnInit() {
   }
 }

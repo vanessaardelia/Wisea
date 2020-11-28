@@ -48,7 +48,7 @@
   <ion-slides [options]="{ slidesPerView: 'auto'}" style="padding: 8px;">
     <ion-slide *ngFor="let wisata of (pertunjukanList | async)" [routerLink]="['./explore-detail', wisata.id]" style="width: 150px">
       <ion-card style="height: 150px; box-shadow: none; border-radius: 0;">
-        <ion-img [src]="(wisata.gambarUrl | async)" style="height: 100px; margin-bottom: 10px; object-fit: cover"></ion-img>
+        <ion-img [src]="(wisata.gambarUrl | async)" style="height: 100px; margin-bottom: 10px; object-fit: cover" (ionImgDidLoad)="loading.dismiss()"></ion-img>
         <ion-card-subtitle class="ion-text-left" style="margin-bottom: 5px;  overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">{{ wisata.nama }}</ion-card-subtitle>
         <ion-card-subtitle class="ion-text-left" style="font-weight: bold">{{ wisata.harga | currency:'IDR':'symbol-narrow':'3.0' }}</ion-card-subtitle>
       </ion-card>

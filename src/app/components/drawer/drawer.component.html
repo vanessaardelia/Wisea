@@ -14,6 +14,7 @@
     <ion-row>
       <ion-col>
         <ion-badge class="ion-no-margin" color="warning">{{ (wisataDetail | async)?.tiketTerjual }} telah membeli tiket</ion-badge>
+        <ion-badge style="margin-left: 5px" color="danger" *ngIf="(wisataDetail | async)?.tiketTersedia <= 0">Habis</ion-badge>
       </ion-col>
     </ion-row>
     <ion-row>
@@ -23,7 +24,7 @@
     </ion-row>
     <ion-row>
       <ion-col>
-        <ion-button shape="round" expand="full" [routerLink]="['/menu/tabs/explore/shopping-cart', (wisataDetail | async)?.id]">Beli</ion-button>
+        <ion-button shape="round" expand="full" [routerLink]="['/menu/tabs/explore/shopping-cart', (wisataDetail | async)?.id]" [disabled]="(wisataDetail | async)?.tiketTersedia <= 0">Beli</ion-button>
       </ion-col>
     </ion-row>
     <hr>

@@ -22,7 +22,11 @@ export class AuthService {
       private userStore: AngularFirestore,
       private storage: AngularFireStorage,
   ) {
-    this.userAuth.onAuthStateChanged(user => {
+    this.authenticate();
+  }
+
+  async authenticate() {
+    await this.userAuth.onAuthStateChanged(user => {
       this.currentUser = user;
     });
   }
@@ -64,7 +68,10 @@ export class AuthService {
     if (userData.photo !== photo.oldPhoto) {
       await this.uploadPhoto(photo.base64Photo, userData.email);
       userData.photo = userData.email + '.png';
+    } else {
+      userData.photo = photo.oldPhotoName;
     }
+
     await user.reauthenticateWithCredential(credential).then(res => {
       this.userStore.doc(`users/${this.currentUser.uid}`).update({
         email: userData.email,
@@ -79,7 +86,6 @@ export class AuthService {
       }
 
       if (userData.newPassword !== null) {
-        console.log('new Password: ', userData.newPassword);
         user.updatePassword(userData.newPassword);
       }
     });

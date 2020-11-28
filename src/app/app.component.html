@@ -3,10 +3,10 @@
     <ion-content color="secondary">
       <div class="menu-header-bg"></div>
       <div class="header-content">
-        <img src="assets/profile/account.svg" alt="">
+        <img src="{{ userProfile?.photo }}" alt="">
         <ion-label>
-          <h2>Thomas729</h2>
-          <p>Thomas Imanuel</p>
+          <h2>{{ userProfile?.username }}</h2>
+          <p>{{ userProfile?.name }}</p>
         </ion-label>
       </div>
 

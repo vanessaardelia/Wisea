@@ -3,7 +3,7 @@
     <ion-content color="secondary">
       <div class="menu-header-bg"></div>
       <div class="header-content">
-        <img src="{{ userProfile?.photo }}" alt="">
+        <img [src]="userProfile?.photo" alt="">
         <ion-label>
           <h2>{{ userProfile?.username }}</h2>
           <p>{{ userProfile?.name }}</p>

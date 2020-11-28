@@ -97,10 +97,22 @@ export class AuthService {
     const uploadedPicture = await storageRef.putString(imageString, 'base64', {
       contentType: 'image/png'
     });
+
+    return uploadedPicture;
   }
 
   getUserData(): Observable<any> {
     return this.userStore.collection('users').doc(this.currentUser.uid).valueChanges();
+  }
+
+  async getPromiseUserData(): Promise<any> {
+    return await new Promise(resolve => {
+      this.userAuth.onAuthStateChanged(user => {
+        console.log('onAuthStateChanged');
+        this.currentUser = user;
+        resolve(this.userStore.collection('users').doc(user.uid).valueChanges());
+      });
+    });
   }
 
   getUserPhotoUrl(imageName): Observable<any> {

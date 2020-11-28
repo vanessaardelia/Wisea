@@ -12,6 +12,7 @@ import { RouterModule } from '@angular/router';
 export class DrawerComponent implements AfterViewInit {
   @ViewChild('drawer', { read: ElementRef }) drawer: ElementRef; // membaca element drawer
   @Input() wisataDetail: Observable<WisataDetail>;
+  @Input() disabledBtn: Boolean
   @Output('openStateChanged') openState: EventEmitter<boolean> = new EventEmitter(); // mengirim informasi bahwa drawer dinaikkan ke parent, agar backdrop menyala
 
   isOpen = false;

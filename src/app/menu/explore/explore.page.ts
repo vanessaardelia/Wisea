@@ -8,6 +8,7 @@ import {NavController} from "@ionic/angular";
 import firebase from "firebase";
 import Database = firebase.database.Database;
 import {DatabaseService} from "../../service/database.service";
+import { IonSlides } from '@ionic/angular';
 
 @Component({
   selector: 'app-explore',
@@ -19,12 +20,22 @@ export class ExplorePage implements OnInit {
   public museumList: Observable<Wisata[]>;
   public workshopList: Observable<Wisata[]>;
 
+  slideOptsOne = {
+    initialSlide: 0,
+    slidesPerView: 1,
+    autoplay:true
+  };
+
   constructor(
       private wisataService: WisataService,
       private storage: AngularFireStorage,
       private navCtrl: NavController,
       private databaseService: DatabaseService
   ) { }
+
+  slidesDidLoad(slides: IonSlides) {
+    slides.startAutoplay();
+  }
 
   ngOnInit() {
     this.pertunjukanList = this.wisataService.getWisata('pertunjukan').pipe(

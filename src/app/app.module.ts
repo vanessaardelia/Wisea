@@ -19,6 +19,7 @@ import {AngularFireAuthModule} from '@angular/fire/auth';
 import {AngularFireStorageModule} from '@angular/fire/storage';
 import { firebaseConfig } from './credentials';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {AuthService} from "./service/auth.service";
 
 @NgModule({
   declarations: [AppComponent],
@@ -37,6 +38,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
   providers: [
     StatusBar,
     SplashScreen,
+    AuthService,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
   ],
   bootstrap: [AppComponent]

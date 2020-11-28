@@ -22,7 +22,11 @@ export class AuthService {
       private userStore: AngularFirestore,
       private storage: AngularFireStorage,
   ) {
-    this.userAuth.onAuthStateChanged(user => {
+    this.authenticate();
+  }
+
+  async authenticate() {
+    await this.userAuth.onAuthStateChanged(user => {
       this.currentUser = user;
     });
   }

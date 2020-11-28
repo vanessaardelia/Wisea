@@ -4,7 +4,6 @@ import {AuthService} from '../../../service/auth.service';
 import {AlertController, LoadingController} from '@ionic/angular';
 import {Router} from '@angular/router';
 import {CameraResultType, Plugins} from '@capacitor/core';
-import {decode} from 'base64-arraybuffer';
 
 const { Camera } = Plugins;
 
@@ -20,6 +19,7 @@ export class EditProfilePage implements OnInit {
   photo: any = {
     userPhoto: '',
     oldPhoto: '',
+    oldPhotoName: '',
     base64Photo: '',
   };
 
@@ -39,10 +39,10 @@ export class EditProfilePage implements OnInit {
         loading.dismiss();
 
         this.userProfile = ref;
-        this.userProfile.photo = res;
         this.photo.userPhoto = res;
         this.photo.oldPhoto = res;
         this.photo.base64Photo = res;
+        this.photo.oldPhotoName = ref.photo;
       });
     });
 
@@ -84,13 +84,6 @@ export class EditProfilePage implements OnInit {
       this.photo.base64Photo = profilePicture.base64String;
       this.photo.userPhoto = 'data:image/png;base64,' + this.photo.base64Photo;
     } catch (error) {
-      const alert = await this.alertController.create({
-        header: 'Pengambilan gambar gagal',
-        message: error.message,
-        buttons: ['OK'],
-      });
-
-      await alert.present();
     }
   }
 

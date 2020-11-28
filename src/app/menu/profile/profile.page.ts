@@ -17,7 +17,10 @@ export class ProfilePage implements OnInit {
       private alertController: AlertController,
       ) { }
 
-  async ngOnInit() {
+  ngOnInit() {
+  }
+
+  async ionViewWillEnter() {
     const loading = await this.loadingController.create();
     await loading.present();
 

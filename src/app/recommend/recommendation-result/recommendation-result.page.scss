@@ -3,47 +3,38 @@
     left: 0%;
     right: 0%;
     top: 32%;
-    margin: 80px 0px 30px;
+    margin: 120px 0px 30px;
     transform: translateY(-50%);
     color: var(--ion-color-primary);
 }
 
-#container strong {
-    font-size: 40px;
-    line-height: 28px;
-    margin-top: 10px;
-    letter-spacing: 2px;
+#container ion-row {
+    margin-top: 5px;
 }
 
 #container p {
-    font-size: 26px;
-    line-height: 28px;
-    color: var(--ion-color-primary);
-    margin-bottom: 16px;
-    width: 10px;
+    color: black;
+    margin-left: 10px;
 }
 
-#container a {
-    text-decoration: none;
+#container ion-img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    cursor: pointer;
 }
 
 #container ion-card {
     display: block;
     margin-left: auto;
     margin-right: auto;
-    // margin-top: 1px;
-    border-radius: 20px;
+    border-radius: 16px;
 }
 
-#container ion-card-title {
-    padding-top: 10px;
-    font-weight: 500;
-}
-
-ion-item {
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
+.card {
+    --border-radius: 10px !important;
+    --border-width: 1px !important;
+    --background: #FFF5DA;
 }
 
 .img {
@@ -53,17 +44,8 @@ ion-item {
     padding: 16px;
 }
 
-.imgCard {
-    display: block;
-    margin-top: 25px;
-    margin-bottom: 0px;
-    padding: 10px;
-    width: 100px;
-    height: 100px;
-}
-
 #container ion-button {
-    margin: 10px 50px;
+    margin: 10px 50px 50px;
     font-weight: 600;
 }
 
@@ -83,11 +65,4 @@ ion-icon {
 
 .alert {
     color: rgb(220, 0, 0);
-}
-
-ion-img {
-    height: 100%;
-    width: 100%;
-    object-fit: cover;
-    border-radius: 10%;
 }

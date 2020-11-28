@@ -75,24 +75,21 @@ export class RecommendationResultPage implements OnInit {
           this.waktu = m.jam.split("-");
 
           if(m.kategori == arr[2] && m.daerah == arr[3].toLowerCase() && arr[1] == 'pagi' && arr[0] == 'less'){
-            if(m.harga <= 100000 && (this.waktu[0]  >= '05:00' && this.waktu[0] < '10:00') || (this.waktu[1] >= '05:00' && this.waktu[1] < '10:00')){
-            // if(m.harga <= 100000 && this.waktu[0] >= '05:00' && this.waktu[1] < '10:00'){
+            if(m.harga <= 100000 && (this.waktu[0]  >= '05:00' && this.waktu[0] < '10:00') || (this.waktu[1] >= '05:00' && this.waktu[1] < '10:00')){         
               console.log('pagi');
               m.gambarUrl = this.getImageUrl(m.gambar[0]);
               this.recommendResult.push(m);
             }
           }
           else if(m.kategori == arr[2] && m.daerah == arr[3].toLowerCase() && arr[1] == 'siang' && arr[0] == 'less'){
-            if(m.harga <= 100000 && (this.waktu[0]  >= '10:00' && this.waktu[0] < '16:00') || (this.waktu[1] >= '10:00' && this.waktu[1] < '16:00')){
-            // if(m.harga <= 100000 && this.waktu[0] >= '10:00' && this.waktu[1] < '16:00'){
+            if(m.harga <= 100000 && (this.waktu[0]  >= '10:00' && this.waktu[0] < '16:00') || (this.waktu[1] >= '10:00' && this.waktu[1] < '16:00')){         
               console.log('siang');
               m.gambarUrl = this.getImageUrl(m.gambar[0]);
               this.recommendResult.push(m);
             }
           }
           else if(m.kategori == arr[2] && m.daerah == arr[3].toLowerCase() && arr[1] == 'sore' && arr[0] == 'less'){
-            if(m.harga <= 100000 && (this.waktu[0]  >= '16:00' && this.waktu[0] < '20:00') || (this.waktu[1] >= '16:00' && this.waktu[1] < '20:00')){
-            // if(m.harga <= 100000 && this.waktu[0] >= '16:00' && this.waktu[1] < '20:00'){
+            if(m.harga <= 100000 && (this.waktu[0]  >= '16:00' && this.waktu[0] < '20:00') || (this.waktu[1] >= '16:00' && this.waktu[1] < '20:00')){           
               console.log('sore');
               m.gambarUrl = this.getImageUrl(m.gambar[0]);
               this.recommendResult.push(m);
@@ -100,38 +97,33 @@ export class RecommendationResultPage implements OnInit {
           }
           else if(m.kategori == arr[2] && m.daerah == arr[3].toLowerCase() && arr[1] == 'malam' && arr[0] == 'less'){
             if(m.harga <= 100000 && (this.waktu[0]  >= '20:00' && (this.waktu[0] <= '24:00' && this.waktu[0] >= '00:00' && this.waktu[0] > '05:00')) || (this.waktu[1] >= '20:00' && (this.waktu[1] <= '24:00' && this.waktu[1] >= '00:00' && this.waktu[1] > '05:00'))){
-            // if(m.harga <= 100000 && this.waktu[0] >= '20:00' && (this.waktu[1] <= '24:00' && this.waktu[1] >= '00:00' && this.waktu[1] > '05:00')){
               m.gambarUrl = this.getImageUrl(m.gambar[0]);
               this.recommendResult.push(m);
             } 
           }
           else if(m.kategori == arr[2] && m.daerah == arr[3].toLowerCase() && arr[1] == 'pagi' && arr[0] == 'more'){
-            if(m.harga <= 100000 && (this.waktu[0]  >= '05:00' && this.waktu[0] < '10:00') || (this.waktu[1] >= '05:00' && this.waktu[1] < '10:00')){
-            // if(m.harga > 100000 && this.waktu[0] >= '05:00' && this.waktu[1] < '10:00'){
+            if(m.harga > 100000 && (this.waktu[0]  >= '05:00' && this.waktu[0] < '10:00') || (this.waktu[1] >= '05:00' && this.waktu[1] < '10:00')){
               console.log('pagi');
               m.gambarUrl = this.getImageUrl(m.gambar[0]);
               this.recommendResult.push(m);
             }
           }
           else if(m.kategori == arr[2] && m.daerah == arr[3].toLowerCase() && arr[1] == 'siang' && arr[0] == 'more'){
-            if(m.harga <= 100000 && (this.waktu[0]  >= '10:00' && this.waktu[0] < '16:00') || (this.waktu[1] >= '10:00' && this.waktu[1] < '16:00')){
-            // if(m.harga > 100000 && this.waktu[0] >= '10:00' && this.waktu[1] < '16:00'){
+            if(m.harga > 100000 && (this.waktu[0]  >= '10:00' && this.waktu[0] < '16:00') || (this.waktu[1] >= '10:00' && this.waktu[1] < '16:00')){
               console.log('siang');
               m.gambarUrl = this.getImageUrl(m.gambar[0]);
               this.recommendResult.push(m);
             }
           }
           else if(m.kategori == arr[2] && m.daerah == arr[3].toLowerCase() && arr[1] == 'sore' && arr[0] == 'more'){
-            if(m.harga <= 100000 && (this.waktu[0]  >= '16:00' && this.waktu[0] < '20:00') || (this.waktu[1] >= '16:00' && this.waktu[1] < '20:00')){
-            // if(m.harga > 100000 && this.waktu[0] >= '16:00' && this.waktu[1] < '20:00'){
+            if(m.harga > 100000 && (this.waktu[0]  >= '16:00' && this.waktu[0] < '20:00') || (this.waktu[1] >= '16:00' && this.waktu[1] < '20:00')){
               console.log('sore');
               m.gambarUrl = this.getImageUrl(m.gambar[0]);
               this.recommendResult.push(m);
             }
           }
           else if(m.kategori == arr[2] && m.daerah == arr[3].toLowerCase() && arr[1] == 'malam' && arr[0] == 'more'){
-            if(m.harga <= 100000 && (this.waktu[0]  >= '20:00' && (this.waktu[0] <= '24:00' && this.waktu[0] >= '00:00' && this.waktu[0] > '05:00')) || (this.waktu[1] >= '20:00' && (this.waktu[1] <= '24:00' && this.waktu[1] >= '00:00' && this.waktu[1] > '05:00'))){
-            // if(m.harga > 100000 && this.waktu[0] >= '20:00' && (this.waktu[1] <= '24:00' && this.waktu[1] >= '00:00' && this.waktu[1] > '05:00')){
+            if(m.harga > 100000 && (this.waktu[0]  >= '20:00' && (this.waktu[0] <= '24:00' && this.waktu[0] >= '00:00' && this.waktu[0] > '05:00')) || (this.waktu[1] >= '20:00' && (this.waktu[1] <= '24:00' && this.waktu[1] >= '00:00' && this.waktu[1] > '05:00'))){
               m.gambarUrl = this.getImageUrl(m.gambar[0]);
               this.recommendResult.push(m);
             } 
@@ -141,11 +133,6 @@ export class RecommendationResultPage implements OnInit {
           }
         })
       );
-
-      console.log(this.message);
-      
-      // this.wisataList = this.wisataService.getWisata();
-      
     });
   }
 

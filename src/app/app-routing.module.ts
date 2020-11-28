@@ -3,7 +3,6 @@ import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 import {canActivate, redirectLoggedInTo, redirectUnauthorizedTo} from '@angular/fire/auth-guard';
 
 const redirectUnauthorizedToLogin = () => redirectUnauthorizedTo(['/']);
-// const redirectLoggedInToHome = () => redirectLoggedInTo(['/home']);
 const redirectLoggedInToHome = () => redirectLoggedInTo(['/menu/tabs/home']);
 
 const routes: Routes = [
@@ -34,7 +33,8 @@ const routes: Routes = [
   },
   {
     path: 'on-boarding-screen',
-    loadChildren: () => import('./on-boarding-screen/on-boarding-screen.module').then( m => m.OnBoardingScreenPageModule)
+    loadChildren: () => import('./on-boarding-screen/on-boarding-screen.module').then( m => m.OnBoardingScreenPageModule),
+    ...canActivate(redirectLoggedInToHome)
   },
   {
     path: 'login',

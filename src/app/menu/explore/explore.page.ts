@@ -2,9 +2,9 @@ import {Component, OnInit} from '@angular/core';
 import {WisataService} from '../../service/wisata.service';
 import {Observable} from 'rxjs';
 import {AngularFireStorage} from '@angular/fire/storage';
-import {map} from 'rxjs/operators';
+import {map, tap} from 'rxjs/operators';
 import {Wisata} from '../../model/wisata.interface';
-import {NavController} from "@ionic/angular";
+import {LoadingController, NavController} from "@ionic/angular";
 import firebase from "firebase";
 import Database = firebase.database.Database;
 import {DatabaseService} from "../../service/database.service";
@@ -19,6 +19,7 @@ export class ExplorePage implements OnInit {
   public pertunjukanList: Observable<Wisata[]>;
   public museumList: Observable<Wisata[]>;
   public workshopList: Observable<Wisata[]>;
+  loading: HTMLIonLoadingElement;
 
   slideOptsOne = {
     initialSlide: 0,
@@ -30,6 +31,7 @@ export class ExplorePage implements OnInit {
       private wisataService: WisataService,
       private storage: AngularFireStorage,
       private navCtrl: NavController,
+      private loadingController: LoadingController,
       private databaseService: DatabaseService
   ) { }
 

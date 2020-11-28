@@ -3,8 +3,9 @@ import { WisataDetail } from '../../../model/wisata-detail.interface';
 import { WisataService } from '../../../service/wisata.service';
 import { ActivatedRoute } from '@angular/router';
 import {Observable} from 'rxjs';
-import {map} from "rxjs/operators";
+import {map, tap} from "rxjs/operators";
 import {AngularFireStorage} from "@angular/fire/storage";
+import {LoadingController} from "@ionic/angular";
 
 @Component({
   selector: 'app-explore-detail',
@@ -15,16 +16,20 @@ export class ExploreDetailPage implements OnInit {
   public wisataDetail: Observable<WisataDetail>;
   public imageDetail: Observable<string[]>;
   backdropVisibile = false;
+  loading: HTMLIonLoadingElement;
   public disabledBtn: Boolean = false;
 
   constructor(
     private wisataService: WisataService,
     private route: ActivatedRoute,
     private storage: AngularFireStorage,
-    private changeDetectorRef: ChangeDetectorRef
+    private changeDetectorRef: ChangeDetectorRef,
+    private loadingController: LoadingController,
   ) { }
 
-  ngOnInit() {
+  async ngOnInit() {
+    this.loading = await this.loadingController.create();
+    await this.loading.present();
     const wisataId = this.route.snapshot.paramMap.get('id');
 
     this.wisataDetail = this.wisataService.getWisataDetail(wisataId).pipe(

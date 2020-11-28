@@ -15,26 +15,26 @@
 
 <ion-content [fullscreen]="true" color="background" class="homepage">
     <ion-item-group id="container">
-      <div style="display: flex;">
-        <ion-item-group lines='none' class="homepage__username">
-          <ion-title color="primary">
-            <p class="homepage__username-heading">Halo,</p>
-            <strong><p class="homepage__username-subheading">{{ currentUser }}</p></strong>
-          </ion-title>
-        </ion-item-group>
-        <ion-img src='assets/homePage/plane.svg' class="homepage__image"></ion-img>
-      </div>
-      <div class="homepage__content">
-        <ion-item lines='none' class="homepage__content-image">
-          <ion-img src="assets/homePage/home.svg"></ion-img>
-        </ion-item>
-        <ion-title class="homepage__content-title">#NgeBolang yukk!</ion-title>
-        <ion-item lines='none'>
-          <p class="homepage__content-subtitle">Seperti abang nasi goreng, kami siapkan hiburan spesial sesuai preferensi kamu!</p>
-        </ion-item>
-        <ion-button expand="block" shape="round" routerLink="/recommendation1" class="homepage__content-btn">
-            Mulai
-        </ion-button>
-      </div>
+        <div style="display: flex;">
+            <ion-item-group lines='none' class="homepage__username">
+                <ion-title color="primary">
+                    <p class="homepage__username-heading">Halo,</p>
+                    <strong><p class="homepage__username-subheading">{{ currentUser }}</p></strong>
+                </ion-title>
+            </ion-item-group>
+            <ion-img src='assets/homePage/plane.svg' class="homepage__image"></ion-img>
+        </div>
+        <div class="homepage__content">
+            <ion-item lines='none' class="homepage__content-image">
+                <ion-img src="assets/homePage/home.svg"></ion-img>
+            </ion-item>
+            <ion-title class="homepage__content-title">#NgeBolang yukk!</ion-title>
+            <ion-item lines='none' class="ion-text-center">
+                <p class="homepage__content-subtitle">Seperti abang nasi goreng, kami siapkan hiburan spesial sesuai preferensi kamu!</p>
+            </ion-item>
+            <ion-button expand="block" shape="round" routerLink="/recommendation1" class="homepage__content-btn">
+                Mulai
+            </ion-button>
+        </div>
     </ion-item-group>
 </ion-content>

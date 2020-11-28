@@ -48,12 +48,14 @@
             }
         }
         &-subtitle {
-            font-size: 24px;
+            font-size: 16px;
             margin: 8px 0px;
             color: rgba(0, 0, 0, 0.38);
-            text-align: center;
+            text-align: center !important;
+            width: 100%;
             @media only screen and (max-width: 769px) {
                 font-size: 16px;
+                text-align: center;
             }
         }
         &-btn {

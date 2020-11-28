@@ -19,37 +19,37 @@
         <ion-grid>
             <ion-row>
                 <ion-col size-sm="12" size-lg="4" offset-lg="4">
-                    <ion-item-group lines="none" *ngFor="let wisata of recommendResult">
-                        <ion-card color="secondary" [routerLink]="['../explore/explore-detail', wisata.id]">
-                            <ion-card-header class="ion-no-padding">
-                                <ion-img class="ion-float-left imgCard" [src]="(wisata.gambarUrl | async)"></ion-img>
-                                <ion-card-title>{{wisata.nama}}</ion-card-title>
-                            </ion-card-header>
-                            <ion-card-content class="ion-no-padding">
-                                <ion-grid>
+                    <ion-list class="ion-no-padding">
+                        <ion-item button lines="none" class="ion-margin ion-no-padding card" *ngFor="let wisata of recommendResult" [routerLink]="['../explore/explore-detail', wisata.id]">
+                            <ion-thumbnail slot="start" class="ion-no-margin ion-margin-end" style="height: 13vh; width: 13vh">
+                                <ion-img [src]="(wisata.gambarUrl | async)" style="border-top-left-radius: 10px; border-bottom-left-radius: 10px;"></ion-img>
+                            </ion-thumbnail>
+                            <ion-label class="ion-no-margin">
+                                <p style="font-weight: bold; text-transform: uppercase;">{{ wisata.nama }}</p>
+                                <ion-grid fixed class="ion-no-padding">
                                     <ion-row>
-                                        <ion-col size="6">
-                                            <ion-icon class="ion-float-left" src="assets/icon/date.svg"></ion-icon>
-                                            <ion-label>{{wisata.tanggal}}</ion-label>
+                                        <ion-col size="6" class="ion-no-padding">
+                                            <ion-icon class="ion-float-left" style="margin-right: 10px" src="assets/icon/money.svg"></ion-icon>
+                                            <p>{{ wisata.harga | currency:'IDR':'symbol-narrow':'3.0' }}</p>
                                         </ion-col>
-                                        <ion-col>
-                                            <ion-icon class="ion-float-left" src="assets/icon/time.svg"></ion-icon>
-                                            <ion-label>{{wisata.jam}}</ion-label>
+                                        <ion-col size="6" class="ion-no-padding">
+                                            <ion-icon class="ion-float-left" style="margin-right: 10px" src="assets/icon/date.svg"></ion-icon>
+                                            <p style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">{{ wisata.tanggal }}</p>
                                         </ion-col>
                                     </ion-row>
                                     <ion-row>
-                                        <ion-col>
-                                            <ion-icon class="ion-float-left" src="assets/icon/money.svg"></ion-icon>
-                                            <ion-label class="ion-text-wrap">{{wisata.harga | currency:"Rp. ": true:"1.0"}}</ion-label>
+                                        <ion-col size="6" class="sold">
+                                            <ion-icon class="ion-float-left" style="margin-right: 10px" src="assets/icon/sold.svg"></ion-icon>
+                                            <p style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">{{ wisata.tiketTerjual }} sold</p>
                                         </ion-col>
                                     </ion-row>
                                 </ion-grid>
-                            </ion-card-content>
-                        </ion-card>
-                    </ion-item-group>
-                    <ion-label *ngIf='!message' color="medium" class="ion-text-wrap ion-text-center">
-                        Ops, maaf belum ada rekomendasi untuk Anda :(
-                    </ion-label>
+                            </ion-label>
+                            <ion-label *ngIf='!wisata' color="medium" class="ion-text-wrap ion-text-center">
+                                Ops, maaf belum ada rekomendasi untuk Anda :(
+                            </ion-label>
+                        </ion-item>
+                    </ion-list>
                 </ion-col>
             </ion-row>
         </ion-grid>

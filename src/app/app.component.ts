@@ -1,5 +1,4 @@
 import {Component, OnInit} from '@angular/core';
-
 import {AlertController, LoadingController, Platform} from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
@@ -27,32 +26,22 @@ export class AppComponent implements OnInit {
   }
 
   async initializeApp() {
-    console.log('init');
     this.platform.ready().then(() => {
       this.statusBar.styleDefault();
       this.splashScreen.hide();
       this.menuRadius();
     });
 
-    // console.log('create loading');
-    // const loading = await this.loadingController.create();
-    // console.log('show loading');
-    // await loading.present();
-
-    console.log('get user');
-    this.updateUserProfile();
+    await this.updateUserProfile();
   }
 
   async updateUserProfile() {
     const loading = await this.loadingController.create();
-    console.log('show loading');
     await loading.present();
     this.authService.getPromiseUserData().then((obs: any) => {
       obs.subscribe(ref => {
-        console.log('get user photo url');
         this.authService.getUserPhotoUrl(ref.photo).subscribe(res => {
           this.userProfile = ref;
-          console.log(res);
           this.userProfile.photo = res;
           loading.dismiss();
         });

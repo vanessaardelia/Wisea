@@ -4,6 +4,7 @@ import {AuthService} from '../../../service/auth.service';
 import {AlertController, LoadingController} from '@ionic/angular';
 import {Router} from '@angular/router';
 import {CameraResultType, Plugins} from '@capacitor/core';
+import {AppComponent} from "../../../app.component";
 
 const { Camera } = Plugins;
 
@@ -28,6 +29,7 @@ export class EditProfilePage implements OnInit {
       private loadingController: LoadingController,
       private alertController: AlertController,
       private router: Router,
+      private appComponent: AppComponent
   ) { }
 
   async ngOnInit() {
@@ -93,6 +95,7 @@ export class EditProfilePage implements OnInit {
     this.form.value.photo = this.photo.userPhoto;
 
     await this.authService.editUserData(this.form.value, confirmPassword, this.photo).then(() => {
+      this.appComponent.updateUserProfile();
       loading.dismiss();
       this.router.navigateByUrl('/menu/tabs/profile', { replaceUrl: true });
     }, async err => {

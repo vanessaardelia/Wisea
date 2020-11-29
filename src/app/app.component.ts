@@ -22,7 +22,11 @@ export class AppComponent implements OnInit {
     private loadingController: LoadingController,
     private alertController: AlertController,
   ) {
-    this.initializeApp();
+    this.authService.userAuth.onAuthStateChanged(user => {
+      if (user) {
+        this.initializeApp();
+      }
+    });
   }
 
   async initializeApp() {

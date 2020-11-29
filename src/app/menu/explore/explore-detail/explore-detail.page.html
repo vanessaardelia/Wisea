@@ -16,7 +16,7 @@
 
   <ion-slides *ngIf="(wisataDetail | async)">
     <ion-slide *ngFor="let index of [0, 1]">
-      <ion-img [src]="(imageDetail[index] | async)" style="height: calc(55vh + env(safe-area-inset-top)); object-fit: cover" (ionImgDidLoad)="loading.dismiss()"></ion-img>
+      <ion-img [src]="(imageDetail[index] | async)" style="height: calc(66vh + env(safe-area-inset-top)); object-fit: cover" (ionImgDidLoad)="loading.dismiss()"></ion-img>
     </ion-slide>
   </ion-slides>
 

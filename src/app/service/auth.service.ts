@@ -18,7 +18,7 @@ export class AuthService {
   currentUser: User = null;
 
   constructor(
-      private userAuth: AngularFireAuth,
+      public userAuth: AngularFireAuth,
       private userStore: AngularFirestore,
       private storage: AngularFireStorage,
   ) {

@@ -3,7 +3,7 @@
   box-shadow: rgba(0, 0, 0, 0.12) 0px 4px 16px;
   width: 100%;
   border-radius: 20px;
-  bottom: calc(-49vh + env(safe-area-inset-bottom)); // agar drawer di bawah
+  bottom: calc(-55vh + env(safe-area-inset-bottom)); // agar drawer di bawah
   height: 80vh;
   z-index: 11; // agar drawer di depan backdrop
   background: #fff; // warna drawer default

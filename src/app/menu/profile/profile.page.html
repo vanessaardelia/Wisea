@@ -1,6 +1,10 @@
 <ion-header>
   <ion-toolbar color="primary">
-    <ion-title class="ion-text-center" style="margin-left: -15%">
+    <ion-buttons routerLink="/history" slot="end">
+      <ion-badge class="notifications-badge" color="danger" mode="ios">{{ historyCount }}</ion-badge>
+      <ion-icon class="header__icon" name="bag-check"></ion-icon>
+    </ion-buttons>
+    <ion-title class="ion-text-center">
       Wisea
     </ion-title>
     <ion-buttons slot="start">

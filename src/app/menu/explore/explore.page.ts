@@ -9,6 +9,8 @@ import firebase from "firebase";
 import Database = firebase.database.Database;
 import {DatabaseService} from "../../service/database.service";
 import { IonSlides } from '@ionic/angular';
+import {AngularFirestore} from "@angular/fire/firestore";
+import {AuthService} from "../../service/auth.service";
 
 @Component({
   selector: 'app-explore',
@@ -20,6 +22,8 @@ export class ExplorePage implements OnInit {
   public museumList: Observable<Wisata[]>;
   public workshopList: Observable<Wisata[]>;
   loading: HTMLIonLoadingElement;
+  userProfile: any;
+  historyCount: string = '';
 
   slideOptsOne = {
     initialSlide: 0,
@@ -32,7 +36,9 @@ export class ExplorePage implements OnInit {
       private storage: AngularFireStorage,
       private navCtrl: NavController,
       private loadingController: LoadingController,
-      private databaseService: DatabaseService
+      private databaseService: DatabaseService,
+      private firestore: AngularFirestore,
+      private authService: AuthService
   ) { }
 
   slidesDidLoad(slides: IonSlides) {
@@ -58,6 +64,21 @@ export class ExplorePage implements OnInit {
           return wisata;
         }))
     );
+  }
+
+  ionViewWillEnter() {
+      this.authService.getUserData().subscribe(res => {
+          this.userProfile = res;
+          this.firestore.collection<History>('history').ref.where('email', '==', this.userProfile.email).where('open', '==', false).get().then((ref) => {
+              let results = ref.docs.map(doc => doc.data());
+              if (results.length > 0) {
+                  this.historyCount = results.length.toString()
+              }
+              else {
+                  return;
+              }
+          });
+      });
   }
 
   getImageUrl(imageName) {

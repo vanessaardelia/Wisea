@@ -46,6 +46,11 @@ ion-card {
     border-radius: 16px;
 }
 
+.logout-alert {
+  --background: var(--ion-color-background);
+}
+
+
 :root {
     /* Set the font family of the entire app */
   --ion-font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", "Montserrat", sans-serif;

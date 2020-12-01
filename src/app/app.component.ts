@@ -71,25 +71,27 @@ export class AppComponent implements OnInit {
 
   async logoutAlert() {
     const alert = await this.alertController.create({
-      cssClass: 'my-custom-class',
+      cssClass: 'logout-alert',
       header: 'Logout',
-      subHeader: 'Yahh... Yakin nih mau keluar?',
-      message: `<img src="https://www.clipartmax.com/png/middle/64-644307_sad-emoji-png-clipart-sad-emoji-png-clipart.png"></img>`,
+      // subHeader: 'Yahh... Yakin nih mau keluar?',
+      message: `
+                <p>Yakin ingin keluar?</p>
+                <img src="../assets/login/logout.svg"></img>`,
       buttons: [
         {
-          text: 'Gajadi deh, demi kamu...',
+          text: 'Tidak',
           role: 'cancel',
           cssClass: 'secondary',
           handler: () => {
             console.log('Confirm Cancel: blah');
           }
         }, {
-          text: 'Ntar pasti login lagi kok!',
+          text: 'Ya',
           handler: () => {
             this.logout();
           }
         }
-      ]
+      ],
     });
 
     await alert.present();

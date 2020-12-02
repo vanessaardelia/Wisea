@@ -4,13 +4,11 @@ import {Observable} from 'rxjs';
 import {AngularFireStorage} from '@angular/fire/storage';
 import {map, tap} from 'rxjs/operators';
 import {Wisata} from '../../model/wisata.interface';
-import {LoadingController, NavController} from "@ionic/angular";
-import firebase from "firebase";
-import Database = firebase.database.Database;
-import {DatabaseService} from "../../service/database.service";
+import {LoadingController, NavController} from '@ionic/angular';
+import {DatabaseService} from '../../service/database.service';
 import { IonSlides } from '@ionic/angular';
-import {AngularFirestore} from "@angular/fire/firestore";
-import {AuthService} from "../../service/auth.service";
+import {AngularFirestore} from '@angular/fire/firestore';
+import {AuthService} from '../../service/auth.service';
 
 @Component({
   selector: 'app-explore',
@@ -23,29 +21,32 @@ export class ExplorePage implements OnInit {
   public workshopList: Observable<Wisata[]>;
   loading: HTMLIonLoadingElement;
   userProfile: any;
-  historyCount: string = '';
+  historyCount: number;
 
   slideOptsOne = {
     initialSlide: 0,
     slidesPerView: 1,
-    autoplay:true
+    autoplay: true
   };
 
   constructor(
+      private authService: AuthService,
       private wisataService: WisataService,
       private storage: AngularFireStorage,
       private navCtrl: NavController,
       private loadingController: LoadingController,
       private databaseService: DatabaseService,
       private firestore: AngularFirestore,
-      private authService: AuthService
-  ) { }
+  ) {}
 
   slidesDidLoad(slides: IonSlides) {
     slides.startAutoplay();
   }
 
-  ngOnInit() {
+  async ngOnInit() {
+    const loading = await this.loadingController.create();
+    await loading.present();
+
     this.pertunjukanList = this.wisataService.getWisata('pertunjukan').pipe(
         map(wisataList => wisataList.map(wisata => {
           wisata.gambarUrl = this.getImageUrl(wisata.gambar[0]);
@@ -64,21 +65,17 @@ export class ExplorePage implements OnInit {
           return wisata;
         }))
     );
-  }
 
-  ionViewWillEnter() {
-      this.authService.getUserData().subscribe(res => {
-          this.userProfile = res;
-          this.firestore.collection<History>('history').ref.where('email', '==', this.userProfile.email).where('open', '==', false).get().then((ref) => {
-              let results = ref.docs.map(doc => doc.data());
-              if (results.length > 0) {
-                  this.historyCount = results.length.toString()
-              }
-              else {
-                  return;
-              }
-          });
-      });
+    await this.authService.getPromiseUserData().then((user: any) => {
+        this.userProfile = user;
+        loading.dismiss();
+    });
+
+    this.firestore.collection<Wisata>('history', ref => {
+        return ref.where('email', '==', this.userProfile.email).where('open', '==', false);
+    }).valueChanges().subscribe(res => {
+        this.historyCount = res.length;
+    });
   }
 
   getImageUrl(imageName) {

@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {AlertController, LoadingController, Platform} from '@ionic/angular';
+import {AlertController, LoadingController, NavController, Platform} from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 import {Router} from '@angular/router';
@@ -21,12 +21,15 @@ export class AppComponent implements OnInit {
     private authService: AuthService,
     private loadingController: LoadingController,
     private alertController: AlertController,
+    private navController: NavController,
   ) {
-    this.authService.userAuth.onAuthStateChanged(user => {
-      if (user) {
-        this.initializeApp();
-      }
-    });
+    // this.authService.userAuth.onAuthStateChanged(user => {
+    //   if (user) {
+    //     console.log(user);
+    //     this.initializeApp();
+    //   }
+    // });
+    this.initializeApp();
   }
 
   async initializeApp() {
@@ -36,13 +39,17 @@ export class AppComponent implements OnInit {
       this.menuRadius();
     });
 
-    await this.updateUserProfile();
+    this.authService.userAuth.onAuthStateChanged(async (user) => {
+      if (user) {
+        await this.updateUserProfile();
+      }
+    });
   }
 
   async updateUserProfile() {
     const loading = await this.loadingController.create();
     await loading.present();
-    this.authService.getPromiseUserData().then((obs: any) => {
+    this.authService.getPromisePhotoUserData().then((obs: any) => {
       obs.subscribe(ref => {
         this.authService.getUserPhotoUrl(ref.photo).subscribe(res => {
           this.userProfile = ref;
@@ -66,7 +73,7 @@ export class AppComponent implements OnInit {
     await this.authService.logout().then(() => {
       loading.dismiss();
     });
-    return this.router.navigateByUrl('/', { replaceUrl: true });
+    return this.navController.navigateRoot('/', { replaceUrl: true });
   }
 
   async logoutAlert() {

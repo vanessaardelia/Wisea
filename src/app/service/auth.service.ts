@@ -105,12 +105,22 @@ export class AuthService {
     return this.userStore.collection('users').doc(this.currentUser.uid).valueChanges();
   }
 
-  async getPromiseUserData(): Promise<any> {
-    return await new Promise(resolve => {
+  async getPromisePhotoUserData(): Promise<any> {
+    return await new Promise((resolve) => {
       this.userAuth.onAuthStateChanged(user => {
         console.log('onAuthStateChanged');
         this.currentUser = user;
-        resolve(this.userStore.collection('users').doc(user.uid).valueChanges());
+        if (user) {
+          resolve(this.userStore.collection('users').doc(user.uid).valueChanges());
+        }
+      });
+    });
+  }
+
+  async getPromiseUserData(): Promise<any> {
+    return await new Promise(resolve => {
+      this.userAuth.onAuthStateChanged(user => {
+        resolve(user);
       });
     });
   }

@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import {AngularFirestore} from '@angular/fire/firestore';
 import { AuthService } from 'src/app/service/auth.service';
+import {Wisata} from "../../model/wisata.interface";
 
 @Component({
   selector: 'app-home',
@@ -9,7 +10,7 @@ import { AuthService } from 'src/app/service/auth.service';
 })
 export class HomePage {
   userProfile: any;
-  historyCount: string = '';
+  historyCount: number;
   currentUser: string;
   
   constructor(
@@ -20,14 +21,10 @@ export class HomePage {
   ionViewWillEnter() {
     this.authService.getUserData().subscribe(res => {
       this.userProfile = res;
-      this.firestore.collection<History>('history').ref.where('email', '==', this.userProfile.email).where('open', '==', false).get().then((ref) => {
-        let results = ref.docs.map(doc => doc.data());
-        if (results.length > 0) {
-          this.historyCount = results.length.toString()
-        }
-        else {
-          return 
-        }
+      this.firestore.collection<Wisata>('history', ref => {
+        return ref.where('email', '==', this.userProfile.email).where('open', '==', false);
+      }).valueChanges().subscribe(res => {
+        this.historyCount = res.length;
       });
     });
 

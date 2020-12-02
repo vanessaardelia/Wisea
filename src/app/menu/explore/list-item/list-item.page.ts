@@ -6,6 +6,7 @@ import {Wisata} from '../../../model/wisata.interface';
 import {map} from 'rxjs/operators';
 import {ActivatedRoute, Router} from "@angular/router";
 import {Geolocation, GeolocationPosition} from "@capacitor/core";
+import {LoadingController} from "@ionic/angular";
 
 @Component({
   selector: 'app-list-item',
@@ -22,11 +23,17 @@ export class ListItemPage implements OnInit {
       private storage: AngularFireStorage,
       private router: Router,
       private route: ActivatedRoute,
+      private loadingController: LoadingController
   ) { }
 
-  ngOnInit() {
+  async ngOnInit() {
+    const loading = await this.loadingController.create();
+    await loading.present();
+
     const order = this.route.snapshot.paramMap.get('order');
     this.getWisataList(order);
+
+    loading.dismiss();
   }
 
   getWisataList(order = null) {

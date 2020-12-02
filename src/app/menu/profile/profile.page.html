@@ -1,7 +1,7 @@
 <ion-header>
   <ion-toolbar color="primary">
     <ion-buttons routerLink="/history" slot="end">
-      <ion-badge class="notifications-badge" color="danger" mode="ios">{{ historyCount }}</ion-badge>
+      <ion-badge class="notifications-badge" color="danger" mode="ios" *ngIf="historyCount > 0">{{ historyCount }}</ion-badge>
       <ion-icon class="header__icon" name="bag-check"></ion-icon>
     </ion-buttons>
     <ion-title class="ion-text-center">

@@ -136,6 +136,8 @@ export class RecommendationResultPage implements OnInit {
         })
       );
     });
+
+    console.log(this.recommendResult);
   }
 
   getLocalData(){

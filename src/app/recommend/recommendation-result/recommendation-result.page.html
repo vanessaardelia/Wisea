@@ -49,11 +49,11 @@
                                     </ion-row>
                                 </ion-grid>
                             </ion-label>
-                            <ion-label *ngIf='!wisata' color="medium" class="ion-text-wrap ion-text-center">
-                                Ops, maaf belum ada rekomendasi untuk Anda :(
-                            </ion-label>
                         </ion-item>
                     </ion-list>
+                    <ion-label *ngIf="(recommendResult.length === 0)" color="medium" class="ion-text-wrap ion-text-center">
+                        Ops, maaf belum ada rekomendasi untuk Anda :(
+                    </ion-label>
                 </ion-col>
             </ion-row>
         </ion-grid>

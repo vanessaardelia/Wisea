@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {AuthService} from '../../service/auth.service';
 import {AlertController, LoadingController} from '@ionic/angular';
 import {AngularFirestore} from "@angular/fire/firestore";
+import {Wisata} from "../../model/wisata.interface";
 
 @Component({
   selector: 'app-profile',
@@ -11,7 +12,7 @@ import {AngularFirestore} from "@angular/fire/firestore";
 export class ProfilePage implements OnInit {
   userProfile: any;
   private currentPhoto: string;
-  historyCount: string = '';
+  historyCount: number;
 
   constructor(
       private authService: AuthService,
@@ -34,15 +35,10 @@ export class ProfilePage implements OnInit {
         this.userProfile = ref;
         this.userProfile.photo = res;
 
-        this.firestore.collection<History>('history').ref.where('email', '==', this.userProfile.email).where('open', '==', false).get().then((ref) => {
-          let results = ref.docs.map(doc => doc.data());
-          if (results.length > 0) {
-            this.historyCount = results.length.toString();
-            console.log(this.historyCount);
-          }
-          else {
-            return;
-          }
+        this.firestore.collection<Wisata>('history', ref => {
+          return ref.where('email', '==', this.userProfile.email).where('open', '==', false);
+        }).valueChanges().subscribe(res => {
+          this.historyCount = res.length;
         });
       });
     });

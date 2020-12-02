@@ -25,6 +25,7 @@ export class RecommendationResultPage implements OnInit {
   public array: any;
   public waktu: string[];
   public message: string;
+  wisata: Boolean = true;
 
   public wisataList: Observable<Wisata[]>;
 
@@ -129,7 +130,8 @@ export class RecommendationResultPage implements OnInit {
             } 
           }
           else{
-               this.message = 'data tidak ada';
+            this.message = 'data tidak ada';
+            this.wisata = false;
           }
         })
       );

@@ -52,7 +52,7 @@ export class HistoryPage implements OnInit {
   }
 
   popView(){
-    this.navCtrl.pop();
+    this.router.navigate(['/menu/tabs/home']);
   }
 
 }
